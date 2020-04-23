@@ -2,9 +2,9 @@
 
 <launch>
   <!-- Setting the Initial Parameters.  -->
-  <arg name="x" default="0.0"/> #5.27
-  <arg name="y" default="0.0"/> #3.42
-  <arg name="z" default="5.0"/>
+  <arg name="x" default="-31.00"/> #5.27
+  <arg name="y" default="15.00"/> #3.42
+  <arg name="z" default="-0.258139"/>
   <arg name="roll" default="0"/>
   <arg name="pitch" default="0"/>
   <arg name="yaw" default="0"/>
@@ -15,7 +15,7 @@
   <arg name="use_amcl" default="false"/>
   <arg name="robot_name" default="" />
   <arg name="tf_prefix" default="" />
-  <arg name="robot_model" default="$(find thorvald_hilly_nav)/config/robot_005.yaml"/>
+  <arg name="robot_model" default="$(find thorvald_hilly_nav)/config/robot_vignesh_010.yaml"/>
   <arg name="model_extras" default="$(find thorvald_hilly_nav)/urdf/sensors_sim.xacro"/>
 
   <!-- Set the maps, joystick, gui -->
@@ -25,7 +25,7 @@
   <arg name="joy_dev" default="/dev/input/js0" />
   <param name="use_sim_time" value="true" />
   <!--arg name="map_file" default="$(find thorvald_hilly_nav)/maps/frogn_sim.yaml"/-->
-  <arg name="world_name" value="$(find thorvald_hilly_nav)/worlds/heightmap.world"/>
+  <arg name="world_name" value="$(find thorvald_hilly_nav)/worlds/drøbak_png.world"/>
   <!--rosparam command="load" file="$(find thorvald_hilly_nav)/config/waypoints_topo.yaml" /-->
 
   <!-- Launch the Gazebo world.  -->
