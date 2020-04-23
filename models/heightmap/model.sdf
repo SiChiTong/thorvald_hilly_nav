@@ -6,9 +6,9 @@
        <collision name="collision">
          <geometry>
            <heightmap>
-              <uri>model://heightmap/materials/textures/drøbak.png</uri>
-              <size>150 150 3</size>
-              <pos>0 0 0</pos>
+              <uri>model://heightmap/materials/textures/drøbak.tif</uri>
+              <size>129 129 3</size>
+              <pos>0 0 1</pos>
            </heightmap>
          </geometry>
        </collision>
@@ -40,14 +40,17 @@
             		<min_height>4</min_height>
             		<fade_dist>5</fade_dist>
       	      </blend>
-                    <uri>model://heightmap/materials/textures/drøbak.png</uri>
-                    <size>150 150 3</size>
-                    <pos>0 0 0</pos>
+                    <uri>model://heightmap/materials/textures/drøbak.tif</uri>
+                    <size>129 129 3</size>
+                    <pos>0 0 1</pos>
                   </heightmap>
                 </geometry>
 
             <!--material>
-                <script>Gazebo/Orange</script>
+              <script>
+                <uri>file://media/materials/scripts/gazebo.material</uri>
+                <name>Gazebo/Tertiary</name>
+              </script>
             </material-->
 
             <material>
@@ -57,7 +60,6 @@
                 <name>heightmap/dirt</name>
               </script>
             </material>
-
         </visual>
 
       </link>

@@ -1,0 +1,2602 @@
+<sdf version='1.6'>
+  <world name='default'>
+    <gravity>0 0 -9.8</gravity>
+    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
+    <atmosphere type='adiabatic'/>
+    <physics name='default_physics' default='0' type='ode'>
+      <max_step_size>0.001</max_step_size>
+      <real_time_factor>1</real_time_factor>
+      <real_time_update_rate>1000</real_time_update_rate>
+    </physics>
+    <scene>
+      <ambient>0.4 0.4 0.4 1</ambient>
+      <background>0.7 0.7 0.7 1</background>
+      <shadows>1</shadows>
+    </scene>
+    <wind/>
+    <spherical_coordinates>
+      <surface_model>EARTH_WGS84</surface_model>
+      <latitude_deg>0</latitude_deg>
+      <longitude_deg>0</longitude_deg>
+      <elevation>0</elevation>
+      <heading_deg>0</heading_deg>
+    </spherical_coordinates>
+    <model name='Heightmap'>
+      <static>1</static>
+      <link name='link'>
+        <collision name='collision'>
+          <geometry>
+            <heightmap>
+              <uri>model://heightmap/materials/textures/drøbak.tif</uri>
+              <size>129 129 3</size>
+              <pos>0 0 1</pos>
+              <texture>
+                <size>10</size>
+                <diffuse>__default__</diffuse>
+                <normal>__default__</normal>
+              </texture>
+              <blend>
+                <min_height>0</min_height>
+                <fade_dist>0</fade_dist>
+              </blend>
+            </heightmap>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='visual'>
+          <geometry>
+            <heightmap>
+              <use_terrain_paging>0</use_terrain_paging>
+              <blend>
+                <min_height>2</min_height>
+                <fade_dist>5</fade_dist>
+              </blend>
+              <blend>
+                <min_height>4</min_height>
+                <fade_dist>5</fade_dist>
+              </blend>
+              <uri>model://heightmap/materials/textures/drøbak.tif</uri>
+              <size>129 129 3</size>
+              <pos>0 0 1</pos>
+              <texture>
+                <size>10</size>
+                <diffuse>__default__</diffuse>
+                <normal>__default__</normal>
+              </texture>
+            </heightmap>
+          </geometry>
+          <material>
+            <script>
+              <uri>model://heightmap/materials/scripts</uri>
+              <uri>model://heightmap/materials/textures</uri>
+              <name>heightmap/dirt</name>
+            </script>
+          </material>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <pose frame=''>-0.512141 -0.370598 0 0 -0 0</pose>
+    </model>
+    <state world_name='default'>
+      <sim_time>371 889000000</sim_time>
+      <real_time>284 585786226</real_time>
+      <wall_time>1587674433 52197426</wall_time>
+      <iterations>277375</iterations>
+      <model name='Heightmap'>
+        <pose frame=''>-0.512141 -0.370598 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-0.512141 -0.370598 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1'>
+        <pose frame=''>-28.753 14.9558 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-28.753 14.9558 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone'>
+        <pose frame=''>-27.7084 14.9583 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-27.7084 14.9583 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_0'>
+        <pose frame=''>-26.5337 14.9435 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-26.5337 14.9435 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_1'>
+        <pose frame=''>-25.2305 14.9538 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-25.2305 14.9538 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_10'>
+        <pose frame=''>-10.1466 14.5943 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-10.1466 14.5943 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_11'>
+        <pose frame=''>-27.2136 14.9569 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-27.2136 14.9569 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_12'>
+        <pose frame=''>-25.9436 14.9479 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-25.9436 14.9479 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_13'>
+        <pose frame=''>-24.567 15.0005 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-24.567 15.0005 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_14'>
+        <pose frame=''>-23.0806 14.9563 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-23.0806 14.9563 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_15'>
+        <pose frame=''>-21.534 14.896 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-21.534 14.896 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_16'>
+        <pose frame=''>-19.757 14.8544 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-19.757 14.8544 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_17'>
+        <pose frame=''>-19.0434 14.8326 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-19.0434 14.8326 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_18'>
+        <pose frame=''>-17.6305 14.7634 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-17.6305 14.7634 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_19'>
+        <pose frame=''>-15.9541 14.6256 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-15.9541 14.6256 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_2'>
+        <pose frame=''>-23.8053 14.9769 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-23.8053 14.9769 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_20'>
+        <pose frame=''>-14.3273 14.5814 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-14.3273 14.5814 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_21'>
+        <pose frame=''>-12.4986 14.5706 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-12.4986 14.5706 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_22'>
+        <pose frame=''>-10.8086 14.5694 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-10.8086 14.5694 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_23'>
+        <pose frame=''>-28.2125 14.9615 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-28.2125 14.9615 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_24'>
+        <pose frame=''>-29.2571 14.9551 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-29.2571 14.9551 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_3'>
+        <pose frame=''>-22.2885 14.9349 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-22.2885 14.9349 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_4'>
+        <pose frame=''>-20.4784 14.8774 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-20.4784 14.8774 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_5'>
+        <pose frame=''>-18.3411 14.8173 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-18.3411 14.8173 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_6'>
+        <pose frame=''>-16.5901 14.6866 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-16.5901 14.6866 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_7'>
+        <pose frame=''>-15.2041 14.6142 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-15.2041 14.6142 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_8'>
+        <pose frame=''>-13.2796 14.5434 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-13.2796 14.5434 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_9'>
+        <pose frame=''>-11.508 14.5646 0.886893 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-11.508 14.5646 0.886893 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='thorvald_ii'>
+        <pose frame=''>-31.0406 15 0.734992 -1e-06 -5.7e-05 -1e-06</pose>
+        <scale>1 1 1</scale>
+        <link name='/base_link'>
+          <pose frame=''>-31.0406 15 0.734992 -1e-06 -5.7e-05 -1e-06</pose>
+          <velocity>0.00018 2.7e-05 -0.181196 2.4e-05 -0.000942 2.5e-05</velocity>
+          <acceleration>-0.000716 0.000271 -1.22134 -0.000298 -0.002639 8.6e-05</acceleration>
+          <wrench>-0.067257 0.025426 -114.684 0 -0 0</wrench>
+        </link>
+        <link name='/leg0'>
+          <pose frame=''>-31.7185 14.38 0.934954 -1e-06 -5.7e-05 -3e-06</pose>
+          <velocity>7e-06 4e-06 -0.18185 2.3e-05 -0.000941 1.9e-05</velocity>
+          <acceleration>0.000442 8.4e-05 -1.22293 -0.000302 -0.002637 8.5e-05</acceleration>
+          <wrench>0.006908 0.001315 -19.1266 0 -0 0</wrench>
+        </link>
+        <link name='/leg1'>
+          <pose frame=''>-30.3627 14.38 0.935032 -1e-06 -5.7e-05 -3e-06</pose>
+          <velocity>8e-06 3.4e-05 -0.180573 2e-05 -0.000941 2.1e-05</velocity>
+          <acceleration>0.000443 0.000186 -1.21935 -0.000312 -0.002636 8.3e-05</acceleration>
+          <wrench>0.006929 0.002916 -19.0707 0 -0 0</wrench>
+        </link>
+        <link name='/leg2'>
+          <pose frame=''>-30.3627 15.62 0.935031 -1e-06 -5.7e-05 -3e-06</pose>
+          <velocity>-2.5e-05 3.5e-05 -0.180542 2e-05 -0.000941 2e-05</velocity>
+          <acceleration>0.000329 0.00019 -1.21972 -0.00031 -0.002636 8.7e-05</acceleration>
+          <wrench>0.005153 0.002973 -19.0764 0 -0 0</wrench>
+        </link>
+        <link name='/leg3'>
+          <pose frame=''>-31.7185 15.62 0.934953 -1e-06 -5.7e-05 -3e-06</pose>
+          <velocity>-2.4e-05 7e-06 -0.181819 2.5e-05 -0.000942 1.8e-05</velocity>
+          <acceleration>0.000333 9.3e-05 -1.2233 -0.000296 -0.002639 9e-05</acceleration>
+          <wrench>0.005208 0.001449 -19.1324 0 -0 0</wrench>
+        </link>
+        <link name='/wheel0_link'>
+          <pose frame=''>-31.7185 14.38 0.934954 -1.5708 -0.204343 -3e-06</pose>
+          <velocity>9e-06 -3e-06 -0.18185 1.3e-05 4.4e-05 3e-06</velocity>
+          <acceleration>0.000447 6.5e-05 -1.22293 -0.000312 0.003854 2.9e-05</acceleration>
+          <wrench>0.002679 0.00039 -7.33759 0 -0 0</wrench>
+        </link>
+        <link name='/wheel1_link'>
+          <pose frame=''>-30.3627 14.38 0.935032 -1.5708 -0.204394 -3e-06</pose>
+          <velocity>1.1e-05 4e-06 -0.180573 -2.2e-05 5.5e-05 2e-06</velocity>
+          <acceleration>0.000454 8.9e-05 -1.21935 -0.000429 0.003914 1.2e-05</acceleration>
+          <wrench>0.002722 0.000532 -7.31612 0 -0 0</wrench>
+        </link>
+        <link name='/wheel2_link'>
+          <pose frame=''>-30.3627 15.62 0.935031 -1.5708 -0.204239 -3e-06</pose>
+          <velocity>-2.7e-05 5e-06 -0.180542 -2.3e-05 -0.000134 3e-06</velocity>
+          <acceleration>0.000324 8.9e-05 -1.21972 -0.000431 0.002796 1.7e-05</acceleration>
+          <wrench>0.001941 0.000535 -7.31833 0 -0 0</wrench>
+        </link>
+        <link name='/wheel3_link'>
+          <pose frame=''>-31.7185 15.62 0.934953 -1.5708 -0.20419 -3e-06</pose>
+          <velocity>-2.8e-05 -2e-06 -0.181819 1.1e-05 -0.000142 3e-06</velocity>
+          <acceleration>0.000318 6.6e-05 -1.2233 -0.000316 0.00275 3.4e-05</acceleration>
+          <wrench>0.001908 0.000396 -7.33978 0 -0 0</wrench>
+        </link>
+      </model>
+    </state>
+    <gui fullscreen='0'>
+      <camera name='user_camera'>
+        <pose frame=''>-37.7871 13.1105 6.76774 0 0.439455 0.228169</pose>
+        <view_controller>orbit</view_controller>
+        <projection_type>perspective</projection_type>
+      </camera>
+    </gui>
+    <model name='thorvald_ii'>
+      <link name='/base_link'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>-0.004792 0 0.618252 0 -0 0</pose>
+          <mass>93.9</mass>
+          <inertia>
+            <ixx>90.6729</ixx>
+            <ixy>0.336</ixy>
+            <ixz>-0.0532228</ixz>
+            <iyy>85.7767</iyy>
+            <iyz>-2.08744e-09</iyz>
+            <izz>99.8742</izz>
+          </inertia>
+        </inertial>
+        <collision name='/base_link_fixed_joint_lump__/top0_collision'>
+          <pose frame=''>-0.67792 -0.62 0.65 0 -0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/tower_modules/DUMMY-TOWER-M.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/top1_collision_1'>
+          <pose frame=''>0.67792 -0.62 0.65 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/tower_modules/DUMMY-TOWER-MIRROR-M.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/top2_collision_2'>
+          <pose frame=''>0.67792 0.62 0.65 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/tower_modules/DUMMY-TOWER-M.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/top3_collision_3'>
+          <pose frame=''>-0.67792 0.62 0.65 0 -0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/tower_modules/DUMMY-TOWER-MIRROR-M.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/bat0_collision_4'>
+          <pose frame=''>0 0.62 0.75721 0 -0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/bat_enc_modules/836586-1-DUMMY-RevA.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/bat1_collision_5'>
+          <pose frame=''>0 -0.62 0.75721 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/bat_enc_modules/836586-1-DUMMY-RevA.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/pipe0_1_collision_6'>
+          <pose frame=''>0 -0.62 0.60721 1.5708 0 -1.5708</pose>
+          <geometry>
+            <cylinder>
+              <length>0.85</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/pipe0_2_collision_7'>
+          <pose frame=''>0 -0.62 0.75721 1.5708 0 -1.5708</pose>
+          <geometry>
+            <cylinder>
+              <length>0.85</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/pipe1_1_collision_8'>
+          <pose frame=''>0.425 0 0.60721 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>1.24</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/pipe1_2_collision_9'>
+          <pose frame=''>0.425 0 0.75721 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>1.24</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/pipe2_1_collision_10'>
+          <pose frame=''>0 0.62 0.60721 1.5708 -0 1.5708</pose>
+          <geometry>
+            <cylinder>
+              <length>0.85</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/pipe2_2_collision_11'>
+          <pose frame=''>0 0.62 0.75721 1.5708 -0 1.5708</pose>
+          <geometry>
+            <cylinder>
+              <length>0.85</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/pipe3_1_collision_12'>
+          <pose frame=''>-0.425 0 0.60721 1.5708 -0 3.14159</pose>
+          <geometry>
+            <cylinder>
+              <length>1.24</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/pipe3_2_collision_13'>
+          <pose frame=''>-0.425 0 0.75721 1.5708 -0 3.14159</pose>
+          <geometry>
+            <cylinder>
+              <length>1.24</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/hokuyo_collision_14'>
+          <pose frame=''>0.7025 0.005 0.66 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__/sprayer_collision_15'>
+          <pose frame=''>-0.45 0 0.5 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <friction>
+              <ode/>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <collision name='/base_link_fixed_joint_lump__box_collision_collision_16'>
+          <pose frame=''>0.8 0 1.75 0 1.0472 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.25 0.06</size>
+            </box>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='/base_link_fixed_joint_lump__/top0_visual'>
+          <pose frame=''>-0.67792 -0.62 0.65 0 -0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/tower_modules/DUMMY-TOWER-M.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/top1_visual_1'>
+          <pose frame=''>0.67792 -0.62 0.65 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/tower_modules/DUMMY-TOWER-MIRROR-M.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/top2_visual_2'>
+          <pose frame=''>0.67792 0.62 0.65 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/tower_modules/DUMMY-TOWER-M.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/top3_visual_3'>
+          <pose frame=''>-0.67792 0.62 0.65 0 -0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/tower_modules/DUMMY-TOWER-MIRROR-M.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/bat0_visual_4'>
+          <pose frame=''>0 0.62 0.75721 0 -0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/bat_enc_modules/836586-1-DUMMY-RevA.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/bat1_visual_5'>
+          <pose frame=''>0 -0.62 0.75721 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/bat_enc_modules/836586-1-DUMMY-RevA.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner0_visual_6'>
+          <pose frame=''>-0.368 -0.62 0.68221 0 -0 3.14159</pose>
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner0_1_visual_7'>
+          <pose frame=''>-0.425 -0.62 0.60721 0 -0 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-T-BRACKET.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner0_2_visual_8'>
+          <pose frame=''>-0.425 -0.62 0.75721 0 -0 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-T-BRACKET.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner0_3_visual_9'>
+          <pose frame=''>-0.468 -0.62 0.60721 0 0.25 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-SUSP.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner0_4_visual_10'>
+          <pose frame=''>-0.468 -0.62 0.75721 0 0.25 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-SUSP.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner1_visual_11'>
+          <pose frame=''>0.368 -0.62 0.68221 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner1_1_visual_12'>
+          <pose frame=''>0.425 -0.62 0.60721 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-T-BRACKET.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner1_2_visual_13'>
+          <pose frame=''>0.425 -0.62 0.75721 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-T-BRACKET.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner1_3_visual_14'>
+          <pose frame=''>0.468 -0.62 0.60721 0 0.25 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-SUSP.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner1_4_visual_15'>
+          <pose frame=''>0.468 -0.62 0.75721 0 0.25 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-SUSP.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner2_visual_16'>
+          <pose frame=''>0.368 0.62 0.68221 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner2_1_visual_17'>
+          <pose frame=''>0.425 0.62 0.60721 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-T-BRACKET.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner2_2_visual_18'>
+          <pose frame=''>0.425 0.62 0.75721 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-T-BRACKET.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner2_3_visual_19'>
+          <pose frame=''>0.468 0.62 0.60721 0 0.25 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-SUSP.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner2_4_visual_20'>
+          <pose frame=''>0.468 0.62 0.75721 0 0.25 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-SUSP.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner3_visual_21'>
+          <pose frame=''>-0.368 0.62 0.68221 0 -0 3.14159</pose>
+          <geometry>
+            <cylinder>
+              <length>0.15</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner3_1_visual_22'>
+          <pose frame=''>-0.425 0.62 0.60721 0 -0 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-T-BRACKET.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner3_2_visual_23'>
+          <pose frame=''>-0.425 0.62 0.75721 0 -0 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-T-BRACKET.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner3_3_visual_24'>
+          <pose frame=''>-0.468 0.62 0.60721 0 0.25 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-SUSP.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/corner3_4_visual_25'>
+          <pose frame=''>-0.468 0.62 0.75721 0 0.25 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/clamps/DUMMY-SUSP.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/pipe0_1_visual_26'>
+          <pose frame=''>0 -0.62 0.60721 1.5708 0 -1.5708</pose>
+          <geometry>
+            <cylinder>
+              <length>0.85</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/pipe0_2_visual_27'>
+          <pose frame=''>0 -0.62 0.75721 1.5708 0 -1.5708</pose>
+          <geometry>
+            <cylinder>
+              <length>0.85</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/pipe1_1_visual_28'>
+          <pose frame=''>0.425 0 0.60721 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>1.24</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/pipe1_2_visual_29'>
+          <pose frame=''>0.425 0 0.75721 1.5708 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>1.24</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/pipe2_1_visual_30'>
+          <pose frame=''>0 0.62 0.60721 1.5708 -0 1.5708</pose>
+          <geometry>
+            <cylinder>
+              <length>0.85</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/pipe2_2_visual_31'>
+          <pose frame=''>0 0.62 0.75721 1.5708 -0 1.5708</pose>
+          <geometry>
+            <cylinder>
+              <length>0.85</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/pipe3_1_visual_32'>
+          <pose frame=''>-0.425 0 0.60721 1.5708 -0 3.14159</pose>
+          <geometry>
+            <cylinder>
+              <length>1.24</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/pipe3_2_visual_33'>
+          <pose frame=''>-0.425 0 0.75721 1.5708 -0 3.14159</pose>
+          <geometry>
+            <cylinder>
+              <length>1.24</length>
+              <radius>0.02</radius>
+            </cylinder>
+          </geometry>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/hokuyo_visual_34'>
+          <pose frame=''>0.7025 0.005 0.66 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/hokuyo/hokuyo.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__/sprayer_visual_35'>
+          <pose frame=''>-0.45 0 0.5 0 -0 0</pose>
+          <geometry>
+            <box>
+              <size>0.1 0.1 0.1</size>
+            </box>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Orange</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <visual name='/base_link_fixed_joint_lump__kinect2_link_visual_36'>
+          <pose frame=''>0.8 0 1.75 1e-06 -1.0472 3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/kinect2_description/meshes/sensors/kinect2.dae</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <script>
+              <uri>__default__</uri>
+              <name>__default__</name>
+            </script>
+          </material>
+        </visual>
+        <velocity_decay/>
+        <sensor name='hokuyo_sensor' type='ray'>
+          <visualize>0</visualize>
+          <update_rate>40</update_rate>
+          <always_on>1</always_on>
+          <ray>
+            <scan>
+              <horizontal>
+                <samples>720</samples>
+                <resolution>1</resolution>
+                <min_angle>-1.5708</min_angle>
+                <max_angle>1.5708</max_angle>
+              </horizontal>
+              <vertical>
+                <samples>1</samples>
+                <min_angle>0</min_angle>
+                <max_angle>0</max_angle>
+              </vertical>
+            </scan>
+            <range>
+              <min>0.1</min>
+              <max>30</max>
+              <resolution>0.01</resolution>
+            </range>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.01</stddev>
+            </noise>
+          </ray>
+          <plugin name='hokuyo_node' filename='libgazebo_ros_laser.so'>
+            <topicName>scan</topicName>
+            <frameName>hokuyo</frameName>
+            <robotNamespace>/</robotNamespace>
+          </plugin>
+          <pose frame=''>0.7025 0.005 0.66 0 -0 0</pose>
+        </sensor>
+        <velocity_decay/>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <sensor name='kinect2_camera' type='camera'>
+          <always_on>1</always_on>
+          <update_rate>10</update_rate>
+          <camera name='kinect2_camera'>
+            <horizontal_fov>1.46708</horizontal_fov>
+            <image>
+              <width>1920</width>
+              <height>1080</height>
+              <format>R8G8B8</format>
+            </image>
+            <clip>
+              <near>0.02</near>
+              <far>10</far>
+            </clip>
+            <noise>
+              <type>gaussian</type>
+              <mean>0</mean>
+              <stddev>0.007</stddev>
+            </noise>
+          </camera>
+          <plugin name='kinect2_camera_controller' filename='libgazebo_ros_camera.so'>
+            <alwaysOn>true</alwaysOn>
+            <updateRate>10.0</updateRate>
+            <cameraName>kinect2_camera</cameraName>
+            <imageTopicName>rgb/image_color_rect</imageTopicName>
+            <cameraInfoTopicName>rgb/camera_info</cameraInfoTopicName>
+            <frameName>kinect2_rgb_optical_frame</frameName>
+            <baseline>0.1</baseline>
+            <distortionK1>0.0</distortionK1>
+            <distortionK2>0.0</distortionK2>
+            <distortionK3>0.0</distortionK3>
+            <distortionT1>0.0</distortionT1>
+            <distortionT2>0.0</distortionT2>
+            <robotNamespace>/</robotNamespace>
+          </plugin>
+          <pose frame=''>0.8 0 1.75 0 1.0472 0</pose>
+        </sensor>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <link name='/leg0'>
+        <pose frame=''>-0.67792 -0.62 0.2 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>15.64</mass>
+          <inertia>
+            <ixx>6.15</ixx>
+            <ixy>1.31</ixy>
+            <ixz>0.218</ixz>
+            <iyy>1.386</iyy>
+            <iyz>0.873</iyz>
+            <izz>6.098</izz>
+          </inertia>
+        </inertial>
+        <collision name='/leg0_collision'>
+          <pose frame=''>0 0 0 0 -0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/drive_modules/836745-5-DUMMY-RevA.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='/leg0_visual'>
+          <pose frame=''>0 0 0 0 -0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/drive_modules/836745-5-DUMMY-RevA.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='/steering0' type='revolute'>
+        <child>/leg0</child>
+        <parent>/base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='/wheel0_link'>
+        <pose frame=''>-0.67792 -0.62 0.2 -1.5708 0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>6</mass>
+          <inertia>
+            <ixx>0.874</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1.504</iyy>
+            <iyz>0</iyz>
+            <izz>0.874</izz>
+          </inertia>
+        </inertial>
+        <collision name='/wheel0_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.16</length>
+              <radius>0.2</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>0.5</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='/wheel0_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.16</length>
+              <radius>0.2</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Black</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='/wheel0' type='revolute'>
+        <child>/wheel0_link</child>
+        <parent>/leg0</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='/leg1'>
+        <pose frame=''>0.67792 -0.62 0.2 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>15.64</mass>
+          <inertia>
+            <ixx>6.15</ixx>
+            <ixy>1.31</ixy>
+            <ixz>0.218</ixz>
+            <iyy>1.386</iyy>
+            <iyz>0.873</iyz>
+            <izz>6.098</izz>
+          </inertia>
+        </inertial>
+        <collision name='/leg1_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/drive_modules/836745-5-DUMMY-MIRROR-RevA.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='/leg1_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/drive_modules/836745-5-DUMMY-MIRROR-RevA.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='/steering1' type='revolute'>
+        <child>/leg1</child>
+        <parent>/base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='/wheel1_link'>
+        <pose frame=''>0.67792 -0.62 0.2 -1.5708 0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>6</mass>
+          <inertia>
+            <ixx>0.874</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1.504</iyy>
+            <iyz>0</iyz>
+            <izz>0.874</izz>
+          </inertia>
+        </inertial>
+        <collision name='/wheel1_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.16</length>
+              <radius>0.2</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>0.5</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='/wheel1_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.16</length>
+              <radius>0.2</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Black</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='/wheel1' type='revolute'>
+        <child>/wheel1_link</child>
+        <parent>/leg1</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='/leg2'>
+        <pose frame=''>0.67792 0.62 0.2 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>15.64</mass>
+          <inertia>
+            <ixx>6.15</ixx>
+            <ixy>1.31</ixy>
+            <ixz>0.218</ixz>
+            <iyy>1.386</iyy>
+            <iyz>0.873</iyz>
+            <izz>6.098</izz>
+          </inertia>
+        </inertial>
+        <collision name='/leg2_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/drive_modules/836745-5-DUMMY-RevA.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='/leg2_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/drive_modules/836745-5-DUMMY-RevA.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='/steering2' type='revolute'>
+        <child>/leg2</child>
+        <parent>/base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='/wheel2_link'>
+        <pose frame=''>0.67792 0.62 0.2 -1.5708 0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>6</mass>
+          <inertia>
+            <ixx>0.874</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1.504</iyy>
+            <iyz>0</iyz>
+            <izz>0.874</izz>
+          </inertia>
+        </inertial>
+        <collision name='/wheel2_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.16</length>
+              <radius>0.2</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>0.5</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='/wheel2_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.16</length>
+              <radius>0.2</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Black</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='/wheel2' type='revolute'>
+        <child>/wheel2_link</child>
+        <parent>/leg2</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='/leg3'>
+        <pose frame=''>-0.67792 0.62 0.2 0 -0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>15.64</mass>
+          <inertia>
+            <ixx>6.15</ixx>
+            <ixy>1.31</ixy>
+            <ixz>0.218</ixz>
+            <iyy>1.386</iyy>
+            <iyz>0.873</iyz>
+            <izz>6.098</izz>
+          </inertia>
+        </inertial>
+        <collision name='/leg3_collision'>
+          <pose frame=''>0 0 0 0 -0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/drive_modules/836745-5-DUMMY-MIRROR-RevA.stl</uri>
+            </mesh>
+          </geometry>
+          <max_contacts>10</max_contacts>
+          <surface>
+            <contact>
+              <ode/>
+            </contact>
+            <bounce/>
+            <friction>
+              <torsional>
+                <ode/>
+              </torsional>
+              <ode/>
+            </friction>
+          </surface>
+        </collision>
+        <visual name='/leg3_visual'>
+          <pose frame=''>0 0 0 0 -0 -3.14159</pose>
+          <geometry>
+            <mesh>
+              <scale>1 1 1</scale>
+              <uri>/opt/ros/kinetic/share/thorvald_model/meshes/drive_modules/836745-5-DUMMY-MIRROR-RevA.stl</uri>
+            </mesh>
+          </geometry>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='/steering3' type='revolute'>
+        <child>/leg3</child>
+        <parent>/base_link</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <link name='/wheel3_link'>
+        <pose frame=''>-0.67792 0.62 0.2 -1.5708 0 0</pose>
+        <inertial>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <mass>6</mass>
+          <inertia>
+            <ixx>0.874</ixx>
+            <ixy>0</ixy>
+            <ixz>0</ixz>
+            <iyy>1.504</iyy>
+            <iyz>0</iyz>
+            <izz>0.874</izz>
+          </inertia>
+        </inertial>
+        <collision name='/wheel3_link_collision'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.16</length>
+              <radius>0.2</radius>
+            </cylinder>
+          </geometry>
+          <surface>
+            <contact>
+              <ode>
+                <kp>1e+06</kp>
+                <kd>1</kd>
+              </ode>
+            </contact>
+            <friction>
+              <ode>
+                <mu>0.5</mu>
+                <mu2>0.5</mu2>
+              </ode>
+              <torsional>
+                <ode/>
+              </torsional>
+            </friction>
+            <bounce/>
+          </surface>
+          <max_contacts>10</max_contacts>
+        </collision>
+        <visual name='/wheel3_link_visual'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
+          <geometry>
+            <cylinder>
+              <length>0.16</length>
+              <radius>0.2</radius>
+            </cylinder>
+          </geometry>
+          <material>
+            <script>
+              <name>Gazebo/Black</name>
+              <uri>file://media/materials/scripts/gazebo.material</uri>
+            </script>
+          </material>
+        </visual>
+        <gravity>1</gravity>
+        <velocity_decay/>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+      <joint name='/wheel3' type='revolute'>
+        <child>/wheel3_link</child>
+        <parent>/leg3</parent>
+        <axis>
+          <xyz>0 1 0</xyz>
+          <limit>
+            <lower>-1e+16</lower>
+            <upper>1e+16</upper>
+          </limit>
+          <dynamics>
+            <spring_reference>0</spring_reference>
+            <spring_stiffness>0</spring_stiffness>
+          </dynamics>
+          <use_parent_model_frame>1</use_parent_model_frame>
+        </axis>
+      </joint>
+      <static>0</static>
+      <plugin name='_thorvald_gazebo_plugins' filename='libthorvald_gazebo_plugins.so'>
+        <alwaysOn>true</alwaysOn>
+        <updateRate>20</updateRate>
+        <robotNamespace/>
+        <commandTopic>base_state</commandTopic>
+        <odometryTopic>odometry/gazebo</odometryTopic>
+        <odometryFrame>/odom</odometryFrame>
+        <robotBaseFrame>/base_link</robotBaseFrame>
+        <steering0>/steering0</steering0>
+        <steering1>/steering1</steering1>
+        <steering2>/steering2</steering2>
+        <steering3>/steering3</steering3>
+        <steering4>/steering4</steering4>
+        <steering5>/steering5</steering5>
+        <steering6>/steering6</steering6>
+        <steering7>/steering7</steering7>
+        <steering8>/steering8</steering8>
+        <steering9>/steering9</steering9>
+        <steering10>s/teering10</steering10>
+        <wheel0>/wheel0</wheel0>
+        <wheel1>/wheel1</wheel1>
+        <wheel2>/wheel2</wheel2>
+        <wheel3>/wheel3</wheel3>
+        <wheel4>/wheel4</wheel4>
+        <wheel5>/wheel5</wheel5>
+        <wheel6>/wheel6</wheel6>
+        <wheel7>/wheel7</wheel7>
+        <wheel8>/wheel8</wheel8>
+        <wheel9>/wheel9</wheel9>
+        <wheel10>/wheel10</wheel10>
+      </plugin>
+      <pose frame=''>-31 15 0.758139 0 -0 0</pose>
+    </model>
+    <model name='plant1'>
+      <static>1</static>
+      <pose frame=''>-26.5851 15.0194 0 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone'>
+      <static>1</static>
+      <pose frame=''>-27.7084 14.9583 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_0'>
+      <static>1</static>
+      <pose frame=''>-26.5337 14.9435 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_1'>
+      <static>1</static>
+      <pose frame=''>-25.2305 14.9538 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_2'>
+      <static>1</static>
+      <pose frame=''>-23.8053 14.9769 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_3'>
+      <static>1</static>
+      <pose frame=''>-22.2885 14.9349 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_4'>
+      <static>1</static>
+      <pose frame=''>-20.4784 14.8774 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_5'>
+      <static>1</static>
+      <pose frame=''>-18.3411 14.8173 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_6'>
+      <static>1</static>
+      <pose frame=''>-16.5901 14.6866 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_7'>
+      <static>1</static>
+      <pose frame=''>-15.2041 14.6142 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_8'>
+      <static>1</static>
+      <pose frame=''>-13.2796 14.5434 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_9'>
+      <static>1</static>
+      <pose frame=''>-11.508 14.5646 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_10'>
+      <static>1</static>
+      <pose frame=''>-10.1466 14.5943 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_11'>
+      <static>1</static>
+      <pose frame=''>-27.2136 14.9569 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_12'>
+      <static>1</static>
+      <pose frame=''>-25.9436 14.9479 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_13'>
+      <static>1</static>
+      <pose frame=''>-24.567 15.0005 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_14'>
+      <static>1</static>
+      <pose frame=''>-23.0806 14.9563 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_15'>
+      <static>1</static>
+      <pose frame=''>-21.534 14.896 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_16'>
+      <static>1</static>
+      <pose frame=''>-19.757 14.8544 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_17'>
+      <static>1</static>
+      <pose frame=''>-19.0434 14.8326 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_18'>
+      <static>1</static>
+      <pose frame=''>-17.6305 14.7634 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_19'>
+      <static>1</static>
+      <pose frame=''>-15.9541 14.6256 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_20'>
+      <static>1</static>
+      <pose frame=''>-14.3273 14.5814 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_21'>
+      <static>1</static>
+      <pose frame=''>-12.4986 14.5706 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_22'>
+      <static>1</static>
+      <pose frame=''>-10.8086 14.5694 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_23'>
+      <static>1</static>
+      <pose frame=''>-28.2125 14.9615 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_24'>
+      <static>1</static>
+      <pose frame=''>-29.2571 14.9551 0.886893 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+  </world>
+</sdf>
