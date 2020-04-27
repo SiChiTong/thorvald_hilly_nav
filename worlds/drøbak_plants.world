@@ -27,7 +27,7 @@
         <collision name='collision'>
           <geometry>
             <heightmap>
-              <uri>model://heightmap/materials/textures/drøbak.tif</uri>
+              <uri>model://heightmap/materials/textures/drøbak.png</uri>
               <size>129 129 3</size>
               <pos>0 0 1</pos>
               <texture>
@@ -67,7 +67,7 @@
                 <min_height>4</min_height>
                 <fade_dist>5</fade_dist>
               </blend>
-              <uri>model://heightmap/materials/textures/drøbak.tif</uri>
+              <uri>model://heightmap/materials/textures/drøbak.png</uri>
               <size>129 129 3</size>
               <pos>0 0 1</pos>
               <texture>
