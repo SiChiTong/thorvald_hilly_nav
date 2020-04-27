@@ -94,7 +94,7 @@
             <script>
               <uri>model://heightmap/materials/scripts</uri>
               <uri>model://heightmap/materials/textures</uri>
-              <name>heightmap/sand</name>
+              <name>heightmap/dirt</name>
             </script>
           </material>
         </visual>

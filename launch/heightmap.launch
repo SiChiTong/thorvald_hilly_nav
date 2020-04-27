@@ -2,9 +2,9 @@
 
 <launch>
   <!-- Setting the Initial Parameters.  -->
-  <arg name="x" default="-31.00"/> #5.27
-  <arg name="y" default="15.00"/> #3.42
-  <arg name="z" default="0.758139"/>
+  <arg name="x" default="-17.075"/> #5.27
+  <arg name="y" default="26.495"/> #3.42
+  <arg name="z" default="0.000"/>
   <arg name="roll" default="0"/>
   <arg name="pitch" default="0"/>
   <arg name="yaw" default="0"/>
@@ -24,8 +24,9 @@
   <arg name="topo_map" default="frogn_sim" />
   <arg name="joy_dev" default="/dev/input/js0" />
   <param name="use_sim_time" value="true" />
+  <arg name="world_name" value="$(find thorvald_hilly_nav)/worlds/drøbak_plants.world"/>
+
   <!--arg name="map_file" default="$(find thorvald_hilly_nav)/maps/frogn_sim.yaml"/-->
-  <arg name="world_name" value="$(find thorvald_hilly_nav)/worlds/drøbak_png.world"/>
   <!--rosparam command="load" file="$(find thorvald_hilly_nav)/config/waypoints_topo.yaml" /-->
 
   <!-- Launch the Gazebo world.  -->
