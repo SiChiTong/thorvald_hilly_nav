@@ -2,9 +2,9 @@
 
 <launch>
   <!-- Setting the Initial Parameters.  -->
-  <arg name="x" default="-17.075"/> #5.27
-  <arg name="y" default="26.495"/> #3.42
-  <arg name="z" default="0.000"/>
+  <arg name="x" default="-22.385"/>
+  <arg name="y" default="18.47"/>
+  <arg name="z" default="1.000"/>
   <arg name="roll" default="0"/>
   <arg name="pitch" default="0"/>
   <arg name="yaw" default="0"/>

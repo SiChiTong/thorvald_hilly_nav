@@ -13,36 +13,15 @@
       </attenuation>
       <direction>-0.5 0.1 -0.9</direction>
     </light>
-    <gravity>0 0 -9.8</gravity>
-    <magnetic_field>6e-06 2.3e-05 -4.2e-05</magnetic_field>
-    <atmosphere type='adiabatic'/>
-    <physics name='default_physics' default='0' type='ode'>
-      <max_step_size>0.001</max_step_size>
-      <real_time_factor>1</real_time_factor>
-      <real_time_update_rate>1000</real_time_update_rate>
-    </physics>
-    <scene>
-      <ambient>0.4 0.4 0.4 1</ambient>
-      <background>0.7 0.7 0.7 1</background>
-      <shadows>1</shadows>
-    </scene>
-    <wind/>
-    <spherical_coordinates>
-      <surface_model>EARTH_WGS84</surface_model>
-      <latitude_deg>0</latitude_deg>
-      <longitude_deg>0</longitude_deg>
-      <elevation>0</elevation>
-      <heading_deg>0</heading_deg>
-    </spherical_coordinates>
     <model name='Heightmap'>
       <static>1</static>
       <link name='link'>
         <collision name='collision'>
           <geometry>
             <heightmap>
-              <uri>model://heightmap/materials/textures/drøbak.png</uri>
-              <size>150 150 3</size>
-              <pos>0 0 0</pos>
+              <uri>model://heightmap/materials/textures/drøbak.tif</uri>
+              <size>129 129 3</size>
+              <pos>0 0 1</pos>
               <texture>
                 <size>10</size>
                 <diffuse>__default__</diffuse>
@@ -80,9 +59,9 @@
                 <min_height>4</min_height>
                 <fade_dist>5</fade_dist>
               </blend>
-              <uri>model://heightmap/materials/textures/drøbak.png</uri>
-              <size>150 150 3</size>
-              <pos>0 0 0</pos>
+              <uri>model://heightmap/materials/textures/drøbak.tif</uri>
+              <size>129 129 3</size>
+              <pos>0 0 1</pos>
               <texture>
                 <size>10</size>
                 <diffuse>__default__</diffuse>
@@ -102,198 +81,315 @@
         <enable_wind>0</enable_wind>
         <kinematic>0</kinematic>
       </link>
-      <pose frame=''>0.91524 -1.2703 0 0 -0 0</pose>
+      <pose frame=''>0.07811 -0.753991 0 0 -0 0</pose>
+    </model>
+    <model name='plant1'>
+      <static>1</static>
+      <pose frame=''>-29.2004 13.2672 0 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
     </model>
     <state world_name='default'>
-      <sim_time>1840 363000000</sim_time>
-      <real_time>1796 715897527</real_time>
-      <wall_time>1587996162 197100898</wall_time>
-      <iterations>1779040</iterations>
+      <sim_time>1671 474000000</sim_time>
+      <real_time>1779 388733432</real_time>
+      <wall_time>1588106335 861630111</wall_time>
+      <iterations>1671474</iterations>
       <model name='Heightmap'>
-        <pose frame=''>0.91524 -1.2703 0 0 -0 0</pose>
+        <pose frame=''>0.07811 -0.753991 0 0 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>0.91524 -1.2703 0 0 -0 0</pose>
+          <pose frame=''>0.07811 -0.753991 0 0 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='ground_plane'>
+        <pose frame=''>0 0 0 0 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>0 0 0 0 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
       <model name='plant1'>
-        <pose frame=''>-15.9289 26.5051 9e-06 1.5707 -0 0</pose>
+        <pose frame=''>-20.3859 18.4786 0.74 1.5707 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-15.9289 26.5051 9e-06 1.5707 -0 0</pose>
+          <pose frame=''>-20.3859 18.4786 0.74 1.5707 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_0'>
-        <pose frame=''>-10.9732 26.5969 0 1.5707 -0 0</pose>
+      <model name='plant1_clone'>
+        <pose frame=''>-19.6972 18.4539 0.74 1.5707 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-10.9732 26.5969 0 1.5707 -0 0</pose>
+          <pose frame=''>-19.6972 18.4539 0.74 1.5707 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_1'>
-        <pose frame=''>-10.3829 26.6499 0 1.5707 -0 0</pose>
+      <model name='plant1_clone_0'>
+        <pose frame=''>-18.9876 18.4285 0.74 1.5707 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-10.3829 26.6499 0 1.5707 -0 0</pose>
+          <pose frame=''>-18.9876 18.4285 0.74 1.5707 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_2'>
-        <pose frame=''>-9.89929 26.6997 0.121095 1.57069 -0.479664 5e-05</pose>
+      <model name='plant1_clone_1'>
+        <pose frame=''>-18.1904 18.4087 0.74 1.5707 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-9.89929 26.6997 0.121095 1.57069 -0.479664 5e-05</pose>
+          <pose frame=''>-18.1904 18.4087 0.74 1.5707 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_3'>
-        <pose frame=''>-9.49334 26.6738 0.352548 1.57069 -0.493268 5.2e-05</pose>
+      <model name='plant1_clone_10'>
+        <pose frame=''>-11.6743 18.551 0.74 1.5707 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-9.49334 26.6738 0.352548 1.57069 -0.493268 5.2e-05</pose>
+          <pose frame=''>-11.6743 18.551 0.74 1.5707 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_4'>
-        <pose frame=''>-9.04195 26.682 0.563611 1.57069 -0.33667 3.4e-05</pose>
+      <model name='plant1_clone_11'>
+        <pose frame=''>-10.9478 18.5609 0.74 1.5707 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-9.04195 26.682 0.563611 1.57069 -0.33667 3.4e-05</pose>
+          <pose frame=''>-10.9478 18.5609 0.74 1.5707 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_5'>
-        <pose frame=''>-8.653 26.6884 0.633814 1.5707 -0 0</pose>
+      <model name='plant1_clone_11_clone'>
+        <pose frame=''>-10.4049 18.536 0.740213 1.5707 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-8.653 26.6884 0.633814 1.5707 -0 0</pose>
+          <pose frame=''>-10.4049 18.536 0.740213 1.5707 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_6'>
-        <pose frame=''>-8.20919 26.6982 0.694646 1.5707 -0 0</pose>
+      <model name='plant1_clone_12'>
+        <pose frame=''>-9.79092 18.5304 0.74 1.5707 -0 0</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-8.20919 26.6982 0.694646 1.5707 -0 0</pose>
+          <pose frame=''>-9.79092 18.5304 0.74 1.5707 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_7'>
-        <pose frame=''>-7.81578 26.6816 0.704784 1.5707 -0 0</pose>
+      <model name='plant1_clone_13'>
+        <pose frame=''>-9.18063 18.5 0.906868 1.5707 -0.16479 1.7e-05</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-7.81578 26.6816 0.704784 1.5707 -0 0</pose>
+          <pose frame=''>-9.18063 18.5 0.906868 1.5707 -0.16479 1.7e-05</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_7_clone'>
-        <pose frame=''>-7.25388 26.6619 0.704784 1.5707 -0 0</pose>
+      <model name='plant1_clone_13_clone'>
+        <pose frame=''>-8.62577 18.5 1.03551 1.5707 -0.236597 2.5e-05</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-7.25388 26.6619 0.704784 1.5707 -0 0</pose>
+          <pose frame=''>-8.62577 18.5 1.03551 1.5707 -0.236597 2.5e-05</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_7_clone_clone'>
-        <pose frame=''>-6.67025 26.6749 0.704784 1.5707 -0 0</pose>
+      <model name='plant1_clone_13_clone_clone'>
+        <pose frame=''>-8.17413 18.5 1.12832 1.5707 -0.166536 1.6e-05</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-6.67025 26.6749 0.704784 1.5707 -0 0</pose>
+          <pose frame=''>-8.17413 18.5 1.12832 1.5707 -0.166536 1.6e-05</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_7_clone_clone_0'>
-        <pose frame=''>-6.1714 26.6721 0.757273 1.5707 -0 0</pose>
+      <model name='plant1_clone_13_clone_clone_clone'>
+        <pose frame=''>-7.66909 18.48 1.10556 1.5707 0.164547 -1.5e-05</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-6.1714 26.6721 0.757273 1.5707 -0 0</pose>
+          <pose frame=''>-7.66909 18.48 1.10556 1.5707 0.164547 -1.5e-05</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_7_clone_clone_1'>
-        <pose frame=''>-5.68992 26.6804 0.777939 1.5707 -0 0</pose>
+      <model name='plant1_clone_13_clone_clone_clone_clone'>
+        <pose frame=''>-7.19046 18.4559 1.10556 1.5707 0.164547 -1.5e-05</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-5.68992 26.6804 0.777939 1.5707 -0 0</pose>
+          <pose frame=''>-7.19046 18.4559 1.10556 1.5707 0.164547 -1.5e-05</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_7_clone_clone_2'>
-        <pose frame=''>-5.11023 26.6666 0.829653 1.5707 -0 0</pose>
+      <model name='plant1_clone_13_clone_clone_clone_clone_0'>
+        <pose frame=''>-6.67185 18.4184 1.10556 1.5707 0.164547 -1.5e-05</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-5.11023 26.6666 0.829653 1.5707 -0 0</pose>
+          <pose frame=''>-6.67185 18.4184 1.10556 1.5707 0.164547 -1.5e-05</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_7_clone_clone_3'>
-        <pose frame=''>-4.48089 26.7084 0.830465 1.5707 -0 0</pose>
+      <model name='plant1_clone_13_clone_clone_clone_clone_1'>
+        <pose frame=''>-6.11153 18.4151 1.10556 1.5707 0.164547 -1.5e-05</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-4.48089 26.7084 0.830465 1.5707 -0 0</pose>
+          <pose frame=''>-6.11153 18.4151 1.10556 1.5707 0.164547 -1.5e-05</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_7_clone_clone_4'>
-        <pose frame=''>-3.89368 26.7029 0.879554 1.5707 -0 0</pose>
+      <model name='plant1_clone_13_clone_clone_clone_clone_2'>
+        <pose frame=''>-5.49716 18.4049 1.19011 1.5707 -0.123753 1.3e-05</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-3.89368 26.7029 0.879554 1.5707 -0 0</pose>
+          <pose frame=''>-5.49716 18.4049 1.19011 1.5707 -0.123753 1.3e-05</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant1_7_clone_clone_5'>
-        <pose frame=''>-3.33328 26.6928 0.928254 1.5707 -0 0</pose>
+      <model name='plant1_clone_13_clone_clone_clone_clone_3'>
+        <pose frame=''>-4.94103 18.3971 1.29466 1.5707 -0.123275 1.3e-05</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-3.33328 26.6928 0.928254 1.5707 -0 0</pose>
+          <pose frame=''>-4.94103 18.3971 1.29466 1.5707 -0.123275 1.3e-05</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
         </link>
       </model>
-      <model name='plant9'>
-        <pose frame=''>-15.6682 26.3195 -1.9e-05 1.5707 0 1.5707</pose>
+      <model name='plant1_clone_13_clone_clone_clone_clone_4'>
+        <pose frame=''>-4.3583 18.3633 1.30626 1.5707 -0.048848 5e-06</pose>
         <scale>1 1 1</scale>
         <link name='link'>
-          <pose frame=''>-15.6682 26.3195 -1.9e-05 1.5707 0 1.5707</pose>
+          <pose frame=''>-4.3583 18.3633 1.30626 1.5707 -0.048848 5e-06</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_2'>
+        <pose frame=''>-17.4575 18.4042 0.74 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-17.4575 18.4042 0.74 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_3'>
+        <pose frame=''>-16.7885 18.3824 0.74 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-16.7885 18.3824 0.74 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_4'>
+        <pose frame=''>-16.1179 18.4207 0.74 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-16.1179 18.4207 0.74 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_5'>
+        <pose frame=''>-15.4757 18.4532 0.74 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-15.4757 18.4532 0.74 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_6'>
+        <pose frame=''>-14.739 18.4987 0.74 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-14.739 18.4987 0.74 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_7'>
+        <pose frame=''>-14.0636 18.5157 0.74 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-14.0636 18.5157 0.74 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_8'>
+        <pose frame=''>-13.3562 18.5229 0.74 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-13.3562 18.5229 0.74 1.5707 -0 0</pose>
+          <velocity>0 0 0 0 -0 0</velocity>
+          <acceleration>0 0 0 0 -0 0</acceleration>
+          <wrench>0 0 0 0 -0 0</wrench>
+        </link>
+      </model>
+      <model name='plant1_clone_9'>
+        <pose frame=''>-12.5651 18.5308 0.74 1.5707 -0 0</pose>
+        <scale>1 1 1</scale>
+        <link name='link'>
+          <pose frame=''>-12.5651 18.5308 0.74 1.5707 -0 0</pose>
           <velocity>0 0 0 0 -0 0</velocity>
           <acceleration>0 0 0 0 -0 0</acceleration>
           <wrench>0 0 0 0 -0 0</wrench>
@@ -303,498 +399,687 @@
         <pose frame=''>0 0 10 0 -0 0</pose>
       </light>
     </state>
+    <model name='plant1_clone'>
+      <static>1</static>
+      <pose frame=''>-19.6972 18.4539 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_0'>
+      <static>1</static>
+      <pose frame=''>-18.9876 18.4285 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_1'>
+      <static>1</static>
+      <pose frame=''>-18.1904 18.4087 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_2'>
+      <static>1</static>
+      <pose frame=''>-17.4575 18.4042 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_3'>
+      <static>1</static>
+      <pose frame=''>-16.7885 18.3824 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_4'>
+      <static>1</static>
+      <pose frame=''>-16.1179 18.4207 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_5'>
+      <static>1</static>
+      <pose frame=''>-15.4757 18.4532 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_6'>
+      <static>1</static>
+      <pose frame=''>-14.739 18.4987 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_7'>
+      <static>1</static>
+      <pose frame=''>-14.0636 18.5157 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_8'>
+      <static>1</static>
+      <pose frame=''>-13.3562 18.5229 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_9'>
+      <static>1</static>
+      <pose frame=''>-12.5651 18.5308 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_10'>
+      <static>1</static>
+      <pose frame=''>-11.6743 18.551 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_11'>
+      <static>1</static>
+      <pose frame=''>-10.698 18.5609 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_12'>
+      <static>1</static>
+      <pose frame=''>-9.79092 18.5304 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_13'>
+      <static>1</static>
+      <pose frame=''>-7.51276 18.5177 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_13_clone'>
+      <static>1</static>
+      <pose frame=''>-8.4382 18.6831 0.933378 1.5707 -0.16479 1.6e-05</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_13_clone_clone'>
+      <static>1</static>
+      <pose frame=''>-7.60933 17.1103 1.03551 1.5707 -0.236596 2.3e-05</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_13_clone_clone_clone'>
+      <static>1</static>
+      <pose frame=''>-7.69332 18.7939 1.19756 1.5707 -0.101791 1e-05</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_13_clone_clone_clone_clone'>
+      <static>1</static>
+      <pose frame=''>-5.73844 18.575 1.10556 1.5707 0.164547 -1.5e-05</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_13_clone_clone_clone_clone_0'>
+      <static>1</static>
+      <pose frame=''>-6.67185 18.4184 1.10556 1.5707 0.164547 -1.5e-05</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_13_clone_clone_clone_clone_1'>
+      <static>1</static>
+      <pose frame=''>-6.11153 18.4151 1.10556 1.5707 0.164547 -1.5e-05</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_13_clone_clone_clone_clone_2'>
+      <static>1</static>
+      <pose frame=''>-5.50461 18.4049 1.10556 1.5707 0.164547 -1.5e-05</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_13_clone_clone_clone_clone_3'>
+      <static>1</static>
+      <pose frame=''>-4.97243 18.3971 1.10556 1.5707 0.164547 -1.5e-05</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_13_clone_clone_clone_clone_4'>
+      <static>1</static>
+      <pose frame=''>-4.39162 18.3633 1.10556 1.5707 0.164547 -1.5e-05</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
+    <model name='plant1_clone_11_clone'>
+      <static>1</static>
+      <pose frame=''>-10.4205 20.712 0.74 1.5707 -0 0</pose>
+      <link name='link'>
+        <visual name='visual'>
+          <geometry>
+            <mesh>
+              <uri>model://plant1/plant1.stl</uri>
+            </mesh>
+          </geometry>
+          <material>
+            <lighting>1</lighting>
+            <ambient>0 0.5 0 1</ambient>
+            <diffuse>0 0.05 0 1</diffuse>
+            <specular>0 0.01 0 1</specular>
+            <emissive>0 0 0 1</emissive>
+            <shader type='vertex'>
+              <normal_map>__default__</normal_map>
+            </shader>
+          </material>
+          <cast_shadows>0</cast_shadows>
+        </visual>
+        <self_collide>0</self_collide>
+        <enable_wind>0</enable_wind>
+        <kinematic>0</kinematic>
+      </link>
+    </model>
     <gui fullscreen='0'>
       <camera name='user_camera'>
-        <pose frame=''>-37.0228 64.1975 15.9827 0 0.397807 -0.907012</pose>
+        <pose frame=''>-36.3999 19.7855 19.1578 0 0.651458 0.036206</pose>
         <view_controller>orbit</view_controller>
         <projection_type>perspective</projection_type>
       </camera>
     </gui>
-    <model name='plant1'>
-      <static>1</static>
-      <pose frame=''>-15.7577 26.5094 0 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant9'>
-      <static>1</static>
-      <pose frame=''>-15.4742 26.3195 0 1.5707 0 1.5707</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant9/plant9.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_0'>
-      <static>1</static>
-      <pose frame=''>-10.9732 26.5969 0 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_1'>
-      <static>1</static>
-      <pose frame=''>-10.3829 26.6499 0 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_2'>
-      <static>1</static>
-      <pose frame=''>-9.68524 26.7388 0 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_3'>
-      <static>1</static>
-      <pose frame=''>-10.5014 27.2997 0 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_4'>
-      <static>1</static>
-      <pose frame=''>-10.3547 25.5492 0 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_5'>
-      <static>1</static>
-      <pose frame=''>-10.2281 25.7224 0 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_6'>
-      <static>1</static>
-      <pose frame=''>-10.2076 27.39 0 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_7'>
-      <static>1</static>
-      <pose frame=''>-7.43725 24.7292 0 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_7_clone'>
-      <static>1</static>
-      <pose frame=''>-7.25388 26.6619 0.704784 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_7_clone_clone'>
-      <static>1</static>
-      <pose frame=''>-6.67025 26.6749 0.704784 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_7_clone_clone_0'>
-      <static>1</static>
-      <pose frame=''>-6.1714 26.6721 0.704784 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_7_clone_clone_1'>
-      <static>1</static>
-      <pose frame=''>-5.68992 26.6804 0.704784 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_7_clone_clone_2'>
-      <static>1</static>
-      <pose frame=''>-5.11023 26.6666 0.704784 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_7_clone_clone_3'>
-      <static>1</static>
-      <pose frame=''>-4.4752 26.6839 0.704784 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_7_clone_clone_4'>
-      <static>1</static>
-      <pose frame=''>-3.89162 26.6935 0.704784 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
-    <model name='plant1_7_clone_clone_5'>
-      <static>1</static>
-      <pose frame=''>-3.33328 26.6928 0.704784 1.5707 -0 0</pose>
-      <link name='link'>
-        <visual name='visual'>
-          <geometry>
-            <mesh>
-              <uri>model://plant1/plant1.stl</uri>
-            </mesh>
-          </geometry>
-          <material>
-            <lighting>1</lighting>
-            <ambient>0 0.5 0 1</ambient>
-            <diffuse>0 0.05 0 1</diffuse>
-            <specular>0 0.01 0 1</specular>
-            <emissive>0 0 0 1</emissive>
-            <shader type='vertex'>
-              <normal_map>__default__</normal_map>
-            </shader>
-          </material>
-          <cast_shadows>0</cast_shadows>
-        </visual>
-        <self_collide>0</self_collide>
-        <enable_wind>0</enable_wind>
-        <kinematic>0</kinematic>
-      </link>
-    </model>
   </world>
 </sdf>
