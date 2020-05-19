@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<launch>
+
+<node pkg="thorvald_hilly_nav" name="online_segmentation.py" type="online_segmentation" output="screen"/>
+
+</launch>

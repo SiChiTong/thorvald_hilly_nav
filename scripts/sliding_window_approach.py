@@ -475,7 +475,7 @@ class sliding_window():
        #cv2.circle(out_img, (modifiedCenters[1][1], modifiedCenters[1][0]), 8, (0, 255, 0), -1)
        midLane_i = []
        curves_m = []
-
+       print len(current_Pts)
        if len(current_Pts)>0:
         for c_in in range(len(current_Pts)): #
             cv2.polylines(out_img, [current_Pts[c_in]], 0, (0,255,255), thickness=5, lineType=8, shift=0)
