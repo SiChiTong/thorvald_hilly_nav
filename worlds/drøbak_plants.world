@@ -63,19 +63,12 @@
               <size>129 129 3</size>
               <pos>0 0 1</pos>
               <texture>
-                <size>10</size>
-                <diffuse>__default__</diffuse>
-                <normal>__default__</normal>
+                <diffuse>file://media/materials/textures/dirt_diffusespecular.png</diffuse>
+                <normal>file://media/materials/textures/flat_normal.png</normal>
+                <size>1</size>
               </texture>
             </heightmap>
           </geometry>
-          <material>
-            <script>
-              <uri>model://heightmap/materials/scripts</uri>
-              <uri>model://heightmap/materials/textures</uri>
-              <name>heightmap/dirt</name>
-            </script>
-          </material>
         </visual>
         <self_collide>0</self_collide>
         <enable_wind>0</enable_wind>

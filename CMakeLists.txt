@@ -19,11 +19,19 @@ find_package(catkin REQUIRED COMPONENTS
   tf
   tf2_geometry_msgs
   visualization_msgs
+  gazebo_ros
+  gazebo_plugins
 )
+
+if(CMAKE_HOST_UNIX)
+  catkin_add_env_hooks(hilly_nav_gazebo SHELLS sh DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/env_hooks)
+else()
+  message(FATAL_ERROR "Only UNIX builds supported.")
+endif()
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
-
+find_package(gazebo REQUIRED)
 
 ## Uncomment this if the package has a setup.py. This macro ensures
 ## modules and global scripts declared therein get installed
