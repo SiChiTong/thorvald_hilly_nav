@@ -19,7 +19,7 @@
   <arg name="model_extras" default="$(find thorvald_hilly_nav)/urdf/sensors_sim.xacro"/>
 
   <!-- Set the maps, joystick, gui -->
-  <arg name="gui" default="true"/>
+  <arg name="gui" default="false"/>
   <arg name="db_path" default="$HOME/mongodb"/>
   <arg name="topo_map" default="frogn_sim" />
   <arg name="joy_dev" default="/dev/input/js0" />
@@ -73,7 +73,7 @@
 
 
  <!-- Run fake localization compatible with AMCL output -->
- <!-- <node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen" /> -->
+ <node pkg="fake_localization" type="fake_localization" name="fake_localization" output="screen" />
 
  <!--node name="robot_pose_publisher" pkg="robot_pose_publisher" type="robot_pose_publisher" /-->
 
@@ -94,6 +94,6 @@
     <rosparam command="load" file="$(find thorvald_hilly_nav)/config/my_laser_config.yaml" />
   </node-->
 
-  <!-- <node pkg="rviz" type="rviz" name="rviz" args="-d $(find thorvald_hilly_nav)/rviz/custom_rviz.rviz" /> -->
+  <node pkg="rviz" type="rviz" name="rviz" args="-d $(find thorvald_hilly_nav)/rviz/custom_rviz.rviz" />
 
 </launch>

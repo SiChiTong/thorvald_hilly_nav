@@ -51,10 +51,9 @@ class hilly_nav():
 
         coldata = np.sum(self.roi_img, axis=0)/255 # Sum the columns of warped image to determine peaks
 
-        self.modifiedCenters_local = signal.find_peaks(coldata, height=100, distance=self.roi_img.shape[1]/3)
+        self.modifiedCenters_local = signal.find_peaks(coldata, height=100, distance=self.roi_img.shape[1]/2)
 
-
-        # print self.modifiedCenters_local[0][0]
+        print self.modifiedCenters_local, len(self.modifiedCenters_local)
 
     def visualize_lane_fit(self, dst_size):
 
@@ -75,7 +74,7 @@ class hilly_nav():
        rheight, rwidth = self.final_img.shape[:2]
        self.final_img[int(rheight*self.crop_ratio):rheight,0:rwidth] = cv2.addWeighted( self.roi_img, 0.6,self.final_img[int(rheight*self.crop_ratio):int(rheight),0:rwidth], 0.8, 0)
 
-       cv2.imwrite('/home/saga/dummy.png', self.final_img) 
+       cv2.imwrite('/home/vignesh/dummy.png', self.final_img)
 
 
     def run_lane_fit(self):
