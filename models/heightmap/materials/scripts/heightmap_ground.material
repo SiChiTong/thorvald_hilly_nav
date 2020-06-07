@@ -1,17 +1,14 @@
-material heightmap/ground
+material heightmap/dirt
 {
   technique
   {
     pass
     {
-      ambient 0.8 0.8 0.8 1.0
-      diffuse 0.1 0.1 0.1 1.0
-      specular 0.01 0.01 0.01 1.0
-      emissive 0.0 0.0 0.0 1.0
 
       texture_unit
       {
-        texture ground.png
+        scale .1 .1
+        texture ground.jpg
         filtering trilinear
       }
     }
