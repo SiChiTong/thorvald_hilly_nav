@@ -54,7 +54,7 @@ void HillyNav::findCentroids(cv::Mat img){
   // }
   int tmp = (img.cols/2)/10;
   for (int c_r = 0; c_r < 5; c_r++){
-    cv::Mat topROI = img(0, (img.rows/2)+((c_r-1)*tmp), img.cols, (img.rows/2)+(c_r*tmp));
+    cv::Mat topROI = img[0, (img.rows/2)+((c_r-1)*tmp), img.cols, (img.rows/2)+(c_r*tmp));
 
     cv::Scalar center = cv::mean(topROI);
 

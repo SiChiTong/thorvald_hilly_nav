@@ -24,10 +24,9 @@
   <arg name="topo_map" default="frogn_sim" />
   <arg name="joy_dev" default="/dev/input/js0" />
   <param name="use_sim_time" value="true" />
-  <arg name="world_name" value="$(find thorvald_hilly_nav)/worlds/drøbak_latest_plants.world"/>
+  <arg name="world_name" value="$(find thorvald_hilly_nav)/worlds/drøbak_plants.world"/>
 
   <!--arg name="map_file" default="$(find thorvald_hilly_nav)/maps/frogn_sim.yaml"/-->
-  <!--rosparam command="load" file="$(find thorvald_hilly_nav)/config/waypoints_topo.yaml" /-->
 
   <!-- Launch the Gazebo world.  -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
@@ -84,10 +83,6 @@
   <!--include file="$(find mongodb_store)/launch/mongodb_store.launch">
     <arg name="db_path" value="$(arg db_path)"/>
   </include>
-
-  <include file="$(find topological_navigation)/launch/topological_navigation.launch" >
-   <arg name="map" value="$(arg topo_map)" />
- </include-->
 
   <!--LASER FILTERS-->
   <!--node pkg="laser_filters" type="scan_to_scan_filter_chain" name="scan_to_scan_filter_chain">

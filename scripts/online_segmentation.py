@@ -53,7 +53,7 @@ class hilly_nav():
 
         self.modifiedCenters_local = signal.find_peaks(coldata, height=100, distance=self.roi_img.shape[1]/2)
 
-        print self.modifiedCenters_local, len(self.modifiedCenters_local)
+        # print self.modifiedCenters_local[0][0]
 
     def visualize_lane_fit(self, dst_size):
 
@@ -68,14 +68,12 @@ class hilly_nav():
                cv2.circle(self.roi_img, (int(self.modifiedCenters_local[0][0]),int(self.roi_img.shape[0]-20)),
                                                                                 0, (255,0,255), thickness=30, lineType=8, shift=0)
 
-
        self.final_img = self.image
        # self.final_img = cv2.cvtColor(self.image, cv2.COLOR_GRAY2RGB)
        rheight, rwidth = self.final_img.shape[:2]
        self.final_img[int(rheight*self.crop_ratio):rheight,0:rwidth] = cv2.addWeighted( self.roi_img, 0.6,self.final_img[int(rheight*self.crop_ratio):int(rheight),0:rwidth], 0.8, 0)
 
-       cv2.imwrite('/home/vignesh/dummy.png', self.final_img)
-
+       cv2.imwrite('/home/saga/dummy.png', self.final_img)
 
     def run_lane_fit(self):
        # Setting the parameters for upscaling and warping-unwarping
