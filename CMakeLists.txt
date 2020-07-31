@@ -158,7 +158,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(BOR_node_test src/BOR_node_test.cpp)
+add_executable(orchards_hilly_nav src/orchards_hilly_nav.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
@@ -167,13 +167,13 @@ add_executable(BOR_node_test src/BOR_node_test.cpp)
 # set_target_properties(BOR_node_test PROPERTIES OUTPUT_NAME node PREFIX "")
 
 ## Specify libraries to link a library or executable target against
-target_link_libraries(BOR_node_test
+target_link_libraries(orchards_hilly_nav
   ${catkin_LIBRARIES}
 )
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
-add_dependencies(BOR_node_test ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(orchards_hilly_nav ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 #############
 ## Install ##
