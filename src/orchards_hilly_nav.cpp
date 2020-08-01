@@ -33,37 +33,82 @@ class HillyNav{
     // void scanCallback(const sensor_msgs::LaserScan::ConstPtr &scan_msg);
     void findCentroids(cv::Mat img);
     void Controller();
+    void bestApproximate(cv::Mat seg_img, std::vector<int> centroids_x,std::vector<int> centroids_y);
+
 
     // // private:
     // pcl::PointCloud<pcl::PointXYZI> ptcloud_pcl;
 
 };
 
+template <typename T>
+std::vector<T> linspace(T a, T b, size_t N) {
+    T h = (b - a) / static_cast<T>(N-1);
+    std::vector<T> xs(N);
+    typename std::vector<T>::iterator x;
+    T val;
+    for (x = xs.begin(), val = a; x != xs.end(); ++x, val += h)
+        *x = val;
+    return xs;
+}
+
+// function to calculate m and c that best fit points
+// represented by x[] and y[]
+void HillyNav::bestApproximate(cv::Mat seg_img, std::vector<int> centroids_x,std::vector<int> centroids_y)
+{
+    float a, b, m, c, sum_x = 0, sum_y = 0, sum_xy = 0, sum_x2 = 0;
+    int n = centroids_x.size();
+    for (int i = 0; i < centroids_x.size(); i++) {
+        sum_x += centroids_x[i];
+        sum_y += centroids_y[i];
+        sum_xy += centroids_x[i] * centroids_y[i];
+        sum_x2 += pow(centroids_x[i], 2);
+    }
+
+    a = (n * sum_xy - sum_x * sum_y) / (n * sum_x2 - pow(sum_x, 2)); //calculate slope
+    // c = (sum_y - m * sum_x) / n;
+    b = (sum_x2*sum_y-sum_x*sum_xy)/(sum_x2*n-sum_x*sum_x);  //calculate intercept
+
+    std::vector<int> fit_x;
+    // std::vector<int> plotyc = linspace(seg_img.rows/2, seg_img.rows-1, seg_img.rows/2);
+    cv::cvtColor(seg_img,seg_img,CV_GRAY2BGR);
+    for(int i=0;i<centroids_x.size();i++){
+      fit_x.push_back(a*centroids_x[i]+b);
+    }
+
+    cv::line(seg_img, cv::Point(fit_x[0], centroids_x[0]),cv::Point(fit_x[centroids_x.size()-1], centroids_x[centroids_x.size()-1]), cv::Scalar(51, 204, 51),1, CV_AA);
+
+    cv::imwrite("test.png",seg_img);
+
+    std::cout << "m =" << m;
+    std::cout << "\nc =" << c;
+}
+
 //*************************************************************************************************
 void HillyNav::findCentroids(cv::Mat img){
 
-  // cv::Mat locations;
-  // cv::findNonZero(img, locations);
-  // std::cout << locations.total() << std::endl;
-  // for (int c_r = 0; c_r < locations.total(); c_r++){
-  //   // std::cout << "Zero#" << c_r << ": " << locations.at<cv::Point>(c_r).x << ", " << locations.at<cv::Point>(c_r).y << std::endl;
-  //   cv::Point pnt = locations.at<cv::Point>(c_r);
-  //   // if nonzero_x.size()!=0:
-  //       //centerline_arr[c_r] = int(np.mean(nonzero_x))
-  //       // cv::circle(img, (int(centerline_arr[c_r]), c_r), 5, (0, 0, 255), -1)
-  // }
-  int tmp = (img.cols/2)/10;
-  for (int c_r = 0; c_r < 5; c_r++){
-    cv::Mat topROI = img[0, (img.rows/2)+((c_r-1)*tmp), img.cols, (img.rows/2)+(c_r*tmp));
+  int hori_strips = 10;
+  int tmp = (img.rows/2)/hori_strips;
+  std::vector<int> pts_x, pts_y;
 
-    cv::Scalar center = cv::mean(topROI);
+  for (int c_r = 0; c_r < hori_strips; c_r++){
 
-    cv::circle(topROI, cv::Point(center[0], center[1]),3, Scalar(51, 204, 51),CV_FILLED, 8,0);
+    cv::Mat topROI = img(cv::Range((img.rows/2)+((c_r)*tmp), (img.rows/2)+((c_r+1)*tmp)),cv::Range(0, img.cols));
+    cv::Mat white_pixels;
 
-    cv::imwrite("test.png",topROI);
+    cv::findNonZero(topROI, white_pixels);
+    if ((white_pixels.total())>0) {
+      cv::Scalar center = cv::mean(white_pixels);
+      std::cout <<  center << std::endl;
+
+      cv::circle(img, cv::Point(center[0], ((img.rows/2)+((c_r)*tmp)+(img.rows/2)+((c_r+1)*tmp))/2),3, cv::Scalar(51, 204, 51),CV_FILLED, 8,0);
+      pts_x.push_back(center[0]);
+      pts_y.push_back((img.rows/2)+((c_r+(c_r+1)/2)*tmp));
+    }
 
   }
 
+  bestApproximate(img, pts_y, pts_x);
 
 
 }
