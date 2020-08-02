@@ -1,10 +1,15 @@
 #include <ros/ros.h>
 #include <glob.h>
+
 #include "cv_bridge/cv_bridge.h"
 #include "opencv2/highgui/highgui.hpp"
 #include <opencv2/core/core.hpp>
 #include <opencv2/core/utility.hpp>
 #include <opencv2/opencv.hpp>
+
+#include <eigen3/Eigen/Dense>
+#include <eigen3/Eigen/QR>
+#include <Eigen/Geometry>
 
 class HillyNav{
 
@@ -38,6 +43,9 @@ class HillyNav{
 
     // // private:
     // pcl::PointCloud<pcl::PointXYZI> ptcloud_pcl;
+     double rho = -0.331613;
+     double ty = 0;
+     double tz = 1.05;
 
 };
 
@@ -52,7 +60,7 @@ std::vector<T> linspace(T a, T b, size_t N) {
     return xs;
 }
 
-// function to calculate m and c that best fit points
+// function to calculate a and b that best fit points
 // represented by x[] and y[]
 void HillyNav::bestApproximate(cv::Mat seg_img, std::vector<int> centroids_x,std::vector<int> centroids_y)
 {
@@ -78,10 +86,10 @@ void HillyNav::bestApproximate(cv::Mat seg_img, std::vector<int> centroids_x,std
 
     cv::line(seg_img, cv::Point(fit_x[0], centroids_x[0]),cv::Point(fit_x[centroids_x.size()-1], centroids_x[centroids_x.size()-1]), cv::Scalar(51, 204, 51),1, CV_AA);
 
-    cv::imwrite("test.png",seg_img);
-
-    std::cout << "m =" << m;
-    std::cout << "\nc =" << c;
+    // cv::imwrite("test.png",seg_img);
+    //
+    // std::cout << "m =" << m;
+    // std::cout << "\nc =" << c;
 }
 
 //*************************************************************************************************
@@ -108,6 +116,7 @@ void HillyNav::findCentroids(cv::Mat img){
 
   }
 
+  // Linear Fitting to the center of the label points
   bestApproximate(img, pts_y, pts_x);
 
 
@@ -120,6 +129,59 @@ void HillyNav::Controller(){
   // float X = F(0);
   // float Y = F(1);
   // float Theta = F(2);
+  //
+  // Eigen::MatrixXf Ls(3,6);
+  // Ls << -(sin(rho)+Y*cos(rho))/tz, 0, X*(sin(rho)+Y*cos(rho))/tz, X*Y, -1-pow(X,2),  Y,
+  //       0,   -(sin(rho)+Y*cos(rho))/tz, Y*(sin(rho)+Y*cos(rho))/tz, 1+pow(Y,2), -X*Y, -X,
+  //       cos(rho)*pow(cos(Theta),2)/tz, cos(rho)*cos(Theta)*sin(Theta)/tz, -(cos(rho)*cos(Theta)*(Y*sin(Theta) + X*cos(Theta)))/tz, -(Y*sin(Theta) + X*cos(Theta))*cos(Theta), -(Y*sin(Theta) + X*cos(Theta))*sin(Theta), -1;
+
+  // // compute tranformation between robot to camera frame
+  // MatrixXf c(2,6);
+  // if( camera_ID == 1){
+  //   c << 0, -sin(rho), cos(rho), 0, 0, 0,
+  //       -ty, 0, 0, 0, -cos(rho ), -sin(rho);
+  // }else{
+  //   c << 0, sin(rho), -cos(rho), 0, 0, 0,
+  //     -ty, 0, 0, 0, cos(rho), sin(rho);
+  // }
+  //
+  // MatrixXf cTR(6,2);
+  //   cTR = c.transpose();
+  //
+  // MatrixXf Tv(6,1);
+  //   Tv = cTR.col(0);
+  //
+  // MatrixXf Tw(6,1);
+  //   Tw = cTR.col(1);
+  //
+  // // compute Jacobian
+  // MatrixXf Jv(2,6);
+  //   Jv << Ls.row(id),
+  //         Ls.row(2);
+  //   Jv = Jv*Tv;
+  //
+  // MatrixXf Jw(2,6);
+  //   Jw << Ls.row(id),
+  //         Ls.row(2);
+  //   Jw = Jw*Tw;
+  //
+  // // // compute control law
+  // Vector2f err((F[id] - F_des[id]), wrapToPi(F[2] - F_des[2]));
+  //
+  // // set weights
+  // MatrixXf tmp_lambda(2,1);
+  //   tmp_lambda << lambda(0)*err(0),
+  //                 lambda(1)*err(1);
+  //
+  // // compute control
+  // MatrixXf Jw_pinv(6,2);
+  // Jw_pinv = Jw.completeOrthogonalDecomposition().pseudoInverse();
+  //
+  // MatrixXf w = -Jw_pinv*(tmp_lambda + Jv*v);
+  //
+  // // Steering Commands
+  // VelocityMsg.angular.z = steering_dir * w(0,0);
+  // VelocityMsg.linear.x  = v;
 
 }
 
