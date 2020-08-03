@@ -35,10 +35,14 @@ endif()
 find_package(gazebo REQUIRED)
 find_package(PCL REQUIRED)
 
+find_package (Eigen3 3.3 REQUIRED NO_MODULE)
+pkg_check_modules( EIGEN3 REQUIRED eigen3 )
+
 include_directories(
     include
     ${catkin_INCLUDE_DIRS}
     ${PCL_INCLUDE_DIRS}
+    ${EIGEN3_INCLUDE_DIRS}
 )
 
 
@@ -169,6 +173,7 @@ add_executable(orchards_hilly_nav src/orchards_hilly_nav.cpp)
 ## Specify libraries to link a library or executable target against
 target_link_libraries(orchards_hilly_nav
   ${catkin_LIBRARIES}
+  Eigen3::Eigen
 )
 
 ## Add cmake target dependencies of the executable
