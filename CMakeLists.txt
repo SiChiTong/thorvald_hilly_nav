@@ -32,6 +32,7 @@ endif()
 
 ## System dependencies are found with CMake's conventions
 # find_package(Boost REQUIRED COMPONENTS system)
+find_package(OpenCV REQUIRED)
 find_package(gazebo REQUIRED)
 find_package(PCL REQUIRED)
 
@@ -172,7 +173,7 @@ add_executable(orchards_hilly_nav src/orchards_hilly_nav.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(orchards_hilly_nav
-  ${catkin_LIBRARIES}
+  ${OpenCV_LIBS} ${catkin_LIBRARIES}
   Eigen3::Eigen
 )
 

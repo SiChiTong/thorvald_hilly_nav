@@ -6,6 +6,9 @@
 #include <opencv2/core/core.hpp>
 #include <opencv2/core/utility.hpp>
 #include <opencv2/opencv.hpp>
+#include "opencv2/imgproc/imgproc.hpp"
+
+#include <geometry_msgs/Twist.h>
 
 #include <eigen3/Eigen/Dense>
 #include <eigen3/Eigen/QR>
@@ -13,9 +16,13 @@
 
 class HillyNav{
 
-  public:
+public:
+
+    ros::NodeHandle nh;
 
     // Functions
+    void imagergbCallback(const sensor_msgs::ImageConstPtr& msg);
+
     void findCentroids(cv::Mat img);
     void Controller();
     void bestApproximate(cv::Mat seg_img, std::vector<int> centroids_x,std::vector<int> centroids_y);
@@ -23,7 +30,9 @@ class HillyNav{
     float compute_Theta(cv::Point2f& P, cv::Point2f& Q);
     float wrapToPi(float angle);
 
-    // private:
+    ros::Subscriber rgb_img_sub = nh.subscribe("predicted_image", 100, &HillyNav::imagergbCallback, this);;
+    ros::Publisher cmd_velocities = nh.advertise<geometry_msgs::Twist>("nav_vel", 100);  // control;
+
     double rho = -0.331613;
     double ty = 0;
     double tz = 1.05;
@@ -35,6 +44,9 @@ class HillyNav{
     Eigen::Vector3f F_des;
     int controller_ID = 1;
     double v = 0.05;
+    cv::Mat rgb_img;
+    bool rgb_img_received = false;
+    geometry_msgs::Twist VelocityMsg;
 
     std::stringstream ss;
 
@@ -44,6 +56,18 @@ class HillyNav{
     std::vector<double> ang_vel;
 
 };
+
+void HillyNav::imagergbCallback(const sensor_msgs::ImageConstPtr& msg){ // RGB Image
+    try{
+      rgb_img = cv_bridge::toCvShare(msg, "mono8")->image;
+      // cv::waitKey(30);
+      rgb_img_received=true;
+     }
+    catch(cv_bridge::Exception& e){
+    ROS_ERROR("Could not convert from '%s' to 'bgr8'.", msg->encoding.c_str());
+    }
+}
+
 
 float HillyNav::wrapToPi(float angle){
   while(angle < -M_PI && angle > M_PI){
@@ -124,6 +148,7 @@ void HillyNav::findCentroids(cv::Mat img){
   int hori_strips = 10;
   int tmp = (img.rows/2)/hori_strips;
   std::vector<int> pts_x, pts_y;
+  std::cout << "HERE" << std::endl;
 
   for (int c_r = 0; c_r < hori_strips; c_r++){
 
@@ -133,7 +158,7 @@ void HillyNav::findCentroids(cv::Mat img){
     cv::findNonZero(topROI, white_pixels);
     if ((white_pixels.total())>0) {
       cv::Scalar center = cv::mean(white_pixels);
-      // std::cout <<  center << std::endl;
+      std::cout <<  center << std::endl;
 
       cv::circle(img, cv::Point(center[0], ((img.rows/2)+((c_r)*tmp)+(img.rows/2)+((c_r+1)*tmp))/2),3, cv::Scalar(51, 204, 51),CV_FILLED, 8,0);
       pts_x.push_back(center[0]);
@@ -223,6 +248,11 @@ void HillyNav::Controller(){
   // VelocityMsg.angular.z = steering_dir * w(0,0);
   // VelocityMsg.linear.x  = v;
 
+  VelocityMsg.linear.x = v; // Sets at constant speed
+  VelocityMsg.angular.z = w(0,0);
+  cmd_velocities.publish(VelocityMsg);
+
+
 }
 
 int main(int argc, char **argv) {
@@ -230,20 +260,37 @@ int main(int argc, char **argv) {
 
   HillyNav nav_obj;
 
-  std::vector<cv::String> label_file;
-  cv::glob("/home/vignesh/NMBU_orchard_fields/results/*.png", label_file, false);
+  // std::vector<cv::String> label_file;
+  // cv::glob("/home/vignesh/NMBU_orchard_fields/results/*.png", label_file, false);
+  //
+  // size_t count = label_file.size(); //number of png files in images folder
+  // // std::cout << count << std::endl;
+  // for (size_t i=0; i<count; i++){
+  //
+  //   std::cout<<label_file[i]<<std::endl;
+  //
+  //   cv::Mat pred_img = imread(label_file[i], 0);
+  //   nav_obj.findCentroids(pred_img);
+  //   nav_obj.Controller();
+  // }
 
-  size_t count = label_file.size(); //number of png files in images folder
-  // std::cout << count << std::endl;
-  for (size_t i=0; i<count; i++){
+  while(ros::ok()){
 
-    std::cout<<label_file[i]<<std::endl;
+    ros::spinOnce();
 
-    cv::Mat pred_img = imread(label_file[i], 0);
-    nav_obj.findCentroids(pred_img);
-    nav_obj.Controller();
+    if(nav_obj.rgb_img_received==true){
+
+      // cv::Mat pred_img = imread(label_file[i], 0);
+
+      nav_obj.findCentroids(nav_obj.rgb_img);
+
+      // nav_obj.Controller();
+
+      nav_obj.rgb_img_received = false;
+
+    } // RGB image check
+
   }
-
   // // Create an output filestream object
   // std::ofstream myFile("ang_vel.csv");
   //
