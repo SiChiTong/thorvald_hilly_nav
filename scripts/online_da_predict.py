@@ -92,27 +92,23 @@ if __name__ == '__main__':
     rospy.init_node('online_da_predict')
     nav_obj = hilly_nav()
 
-    parser = argparse.ArgumentParser(description="Example: Run prediction on an image folder. Example usage: python lane_predict.py --model_prefix=models/resnet_3class --epoch=25 --input_folder=Frogn_Dataset/images_prepped_test --output_folder=.")
-    parser.add_argument("--model_prefix", default = '', help = "Prefix of model filename")
-    parser.add_argument("--epoch", default = None, help = "Checkpoint epoch number")
-    parser.add_argument("--input_folder",default = '', help = "(Relative) path to input image file")
-    parser.add_argument("--output_folder", default = '', help = "(Relative) path to output image file. If empty, image is not written.")
-    parser.add_argument("--display",default = False, help = "Whether to display video on screen (can be slow)")
-
-    args = parser.parse_args()
+    model_prefix = rospy.get_param("/model_prefix")
+    epoch = rospy.get_param("/epoch")
+    input_folder = rospy.get_param("/input_folder")
+    output_folder = rospy.get_param("/output_folder")
 
     #Load model
-    model = predict.model_from_checkpoint_path(args.model_prefix, args.epoch)
+    model = predict.model_from_checkpoint_path(model_prefix, epoch)
 
     while not rospy.is_shutdown():
 
-        print('Output_folder',args.output_folder)
-        im_files = glob.glob(os.path.join(args.input_folder,'*.jpg'))
-        print(os.path.join(args.input_folder+'*.png'))
+        print('Output_folder',output_folder)
+        im_files = glob.glob(os.path.join(input_folder,'*.jpg'))
+        print(os.path.join(input_folder+'*.png'))
         for im in sorted(im_files):
-            if args.output_folder:
+            if output_folder:
                 base = os.path.basename(im)
-                output_file = os.path.join(args.output_folder,os.path.splitext(base)[0])+"_pred.png"
+                output_file = os.path.join(output_folder,os.path.splitext(base)[0])+"_pred.png"
                 print(output_file)
             else:
                 output_file = None
