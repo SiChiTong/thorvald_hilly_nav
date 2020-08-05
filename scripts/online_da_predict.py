@@ -26,6 +26,7 @@ class hilly_nav():
         self.n_classes=2
 
         self.bridge = CvBridge()
+        self.img_received = False
 
         # Subscribers
         self.subscriber = rospy.Subscriber("/camera/color/image_raw",Image, self.callback)
@@ -39,6 +40,7 @@ class hilly_nav():
        #### direct conversion to CV2 ####
        try:
          self.image = self.bridge.imgmsg_to_cv2(ros_data, "bgr8")
+         self.img_received = True
        except CvBridgeError as e:
          print(e)
 
@@ -102,18 +104,18 @@ if __name__ == '__main__':
 
     while not rospy.is_shutdown():
 
-        print('Output_folder',output_folder)
-        im_files = glob.glob(os.path.join(input_folder,'*.jpg'))
-        print(os.path.join(input_folder+'*.png'))
-        for im in sorted(im_files):
-            if output_folder:
-                base = os.path.basename(im)
-                output_file = os.path.join(output_folder,os.path.splitext(base)[0])+"_pred.png"
-                print(output_file)
-            else:
-                output_file = None
-
-            seg_arr = nav_obj.predict_on_image(model,inp = im, visualize = True, output_file = output_file, display=True)
+        # print('Output_folder',output_folder)
+        # im_files = glob.glob(os.path.join(input_folder,'*.jpg'))
+        # print(os.path.join(input_folder+'*.png'))
+        # for im in sorted(im_files):
+        #     if output_folder:
+        #         base = os.path.basename(im)
+        #         output_file = os.path.join(output_folder,os.path.splitext(base)[0])+"_pred.png"
+        #         print(output_file)
+        #     else:
+        #         output_file = None
+        if nav_obj.img_received==True:
+            seg_arr = nav_obj.predict_on_image(model,inp = nav_obj.self.image, visualize = True, output_file = output_file, display=True)
 
             print("--- %s seconds ---" % (time.time() - start_time))
 
