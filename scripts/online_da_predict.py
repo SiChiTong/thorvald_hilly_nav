@@ -23,7 +23,7 @@ class hilly_nav():
         self.overlay_img = Image()
 
         self.label_no = 1 # DA Class
-        self.n_classes=2
+        self.n_classes = 2
 
         self.bridge = CvBridge()
         self.img_received = False
@@ -90,37 +90,27 @@ class hilly_nav():
 
 if __name__ == '__main__':
 
-    # Initialize node
-    rospy.init_node('online_da_predict')
-    nav_obj = hilly_nav()
-
-    model_prefix = rospy.get_param("/model_prefix")
-    epoch = rospy.get_param("/epoch")
-    input_folder = rospy.get_param("/input_folder")
-    output_folder = rospy.get_param("/output_folder")
-
-    #Load model
-    model = predict.model_from_checkpoint_path(model_prefix, epoch)
-
-    while not rospy.is_shutdown():
-
-        # print('Output_folder',output_folder)
-        # im_files = glob.glob(os.path.join(input_folder,'*.jpg'))
-        # print(os.path.join(input_folder+'*.png'))
-        # for im in sorted(im_files):
-        #     if output_folder:
-        #         base = os.path.basename(im)
-        #         output_file = os.path.join(output_folder,os.path.splitext(base)[0])+"_pred.png"
-        #         print(output_file)
-        #     else:
-        #         output_file = None
-        if nav_obj.img_received==True:
-            seg_arr = nav_obj.predict_on_image(model,inp = nav_obj.self.image, visualize = True, output_file = output_file, display=True)
-
-            print("--- %s seconds ---" % (time.time() - start_time))
-
     try:
-        rospy.spin()
+        # Initialize node
+        rospy.init_node('online_da_predict')
+        nav_obj = hilly_nav()
+
+        model_prefix = rospy.get_param("/model_prefix")
+        epoch = rospy.get_param("/epoch")
+        input_folder = rospy.get_param("/input_folder")
+        output_folder = rospy.get_param("/output_folder")
+
+        #Load model
+        model = predict.model_from_checkpoint_path(model_prefix, epoch)
+
+        while not rospy.is_shutdown():
+
+            if nav_obj.img_received==True:
+                output_file = output_folder+"_pred.png"
+                seg_arr = nav_obj.predict_on_image(model,inp = nav_obj.image, visualize = True, output_file = output_file, display=False)
+                print("--- %s seconds ---" % (time.time() - start_time))
+                nav_obj.img_received = False
+
     except KeyboardInterrupt:
        print("Shutting down")
        cv2.destroyAllWindows()
