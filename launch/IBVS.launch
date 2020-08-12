@@ -2,10 +2,10 @@
 
 <launch>
 
-<param name="model_prefix" type="str" value="/home/vignesh/NMBU_orchard_fields/segnet_weights_orchards/resnet50_segnet" />
+<param name="model_prefix" type="str" value="$(env HOME)/NMBU_orchard_fields/segnet_weights_orchards/resnet50_segnet" />
 <param name="epoch" type="int" value="20" />
-<param name="input_folder" type="str" value="/home/vignesh/NMBU_orchard_fields/in_row/" />
-<param name="output_folder" type="str" value="/home/vignesh/NMBU_orchard_fields/results/" />
+<param name="input_folder" type="str" value="$(env HOME)/NMBU_orchard_fields/in_row/" />
+<param name="output_folder" type="str" value="$(env HOME)/NMBU_orchard_fields/results/" />
 
 <node pkg="thorvald_hilly_nav" name="online_da_predict" type="online_da_predict.py" output="screen"/>
 

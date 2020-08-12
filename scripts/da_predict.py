@@ -1,6 +1,5 @@
 #!/usr/bin/env python
 import rospy
-
 import os
 import glob
 import argparse
@@ -31,8 +30,8 @@ class hilly_nav():
         self.subscriber = rospy.Subscriber("/camera/color/image_raw",Image, self.callback)
 
         # Publishers
-        self.seg_img_pub = rospy.Publisher('predicted_image', Image)
-        self.overlay_img_pub = rospy.Publisher('overlay_image', Image)
+        self.seg_img_pub = rospy.Publisher('predicted_image', Image, queue_size=10)
+        self.overlay_img_pub = rospy.Publisher('overlay_image', Image, queue_size=10)
         self.rate = rospy.Rate(1) # 10hz
 
     def callback(self, ros_data):

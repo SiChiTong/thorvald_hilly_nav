@@ -23,7 +23,7 @@ class hilly_nav():
         self.overlay_img = Image()
 
         self.label_no = 1 # DA Class
-        self.n_classes=2
+        self.n_classes = 2
 
         self.bridge = CvBridge()
         self.img_received = False
