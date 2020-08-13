@@ -2,16 +2,15 @@
 #include <typeinfo>
 
 HillyNav::HillyNav(){
-  // ROS_ERROR("Visual Servoing core is running...");
-  // if (!agribotVS.readRUNParmas(nodeHandle_)) {
-  //    ROS_ERROR("Could not read parameters.");
-  //    ros::requestShutdown();
-  // }
 
   // Subscribers
-  pred_img_sub = nodeHandle_.subscribe("predicted_image", 1, &HillyNav::imagergbCallback, this);
+  pred_img_sub = nodeHandle_.subscribe("predicted_image", 1, &HillyNav::predimagergbCallback, this);
+
+  rgb_img_sub = nodeHandle_.subscribe("overlay_image", 1, &HillyNav::imagergbCallback, this);
 
   // Publishers
+  rgb_img_pub = nodeHandle_.advertise<sensor_msgs::Image>("fitted_image", 10);  // control;
+
   cmd_velocities = nodeHandle_.advertise<geometry_msgs::Twist>("nav_vel", 10);  // control;
 
   VelocityMsg.linear.x =0.0;
@@ -21,7 +20,8 @@ HillyNav::HillyNav(){
 HillyNav::~HillyNav() {
 }
 
-void HillyNav::imagergbCallback(const sensor_msgs::ImageConstPtr& msg){ // RGB Image
+
+void HillyNav::predimagergbCallback(const sensor_msgs::ImageConstPtr& msg){ // RGB Image
     try{
       pred_img = cv_bridge::toCvCopy(msg, "mono8")->image;
       pred_img_received=true;
@@ -31,6 +31,15 @@ void HillyNav::imagergbCallback(const sensor_msgs::ImageConstPtr& msg){ // RGB I
     }
 }
 
+void HillyNav::imagergbCallback(const sensor_msgs::ImageConstPtr& msg){ // RGB Image
+    try{
+      rgb_img = cv_bridge::toCvCopy(msg, "rgb8")->image;
+      rgb_img_received=true;
+     }
+    catch(cv_bridge::Exception& e){
+      ROS_ERROR("Could not convert from '%s' to 'bgr'.", msg->encoding.c_str());
+    }
+}
 
 float HillyNav::wrapToPi(float angle){
   while(angle < -M_PI && angle > M_PI){
@@ -80,15 +89,16 @@ void HillyNav::bestApproximate(cv::Mat seg_img, std::vector<int> centroids_x,std
     // c = (sum_y - m * sum_x) / n;
     b = (sum_x2*sum_y-sum_x*sum_xy)/(sum_x2*n-sum_x*sum_x);  //calculate intercept
 
-    cv::cvtColor(seg_img,seg_img,CV_GRAY2BGR);
     for(int i=0;i<n;i++){
       line_fit.push_back(cv::Point(a*centroids_x[i]+b,centroids_x[i]));
     }
 
     // std::cout << line_fit << std::endl;
 
-    cv::line(seg_img, cv::Point(line_fit[0].x, line_fit[0].y),cv::Point(line_fit[n-1].x,
-                                                            line_fit[n-1].y), cv::Scalar(51, 204, 51),1, CV_AA);
+    cv::cvtColor(seg_img,seg_img,CV_GRAY2BGR);
+
+    cv::line(rgb_img, cv::Point(line_fit[0].x, line_fit[0].y),cv::Point(line_fit[n-1].x,
+                                                            line_fit[n-1].y), cv::Scalar(255, 0, 0),1, CV_AA);
 
     Q = line_fit[0];
     P = line_fit[n-1];
@@ -101,7 +111,14 @@ void HillyNav::bestApproximate(cv::Mat seg_img, std::vector<int> centroids_x,std
     // std::string filename = ss.str();
     // ss.str("");
     //
-    // cv::imwrite("/home/vignesh/NMBU_orchard_fields/results/test_2/"+filename,seg_img);
+    // cv::imwrite("/home/vignesh/NMBU_orchard_fields/results/test_2/"+filename,rgb_img);
+
+    header.seq = counter; // user defined counter
+    header.stamp = ros::Time::now(); // time
+    img_bridge = cv_bridge::CvImage(header, sensor_msgs::image_encodings::BGR8, rgb_img);
+    img_bridge.toImageMsg(img_msg); // from cv_bridge to sensor_msgs::Image
+    rgb_img_pub.publish(img_msg);
+    counter++;
 
 }
 
@@ -193,7 +210,7 @@ void HillyNav::Controller(){
 
   // set weights
   Eigen::MatrixXf tmp_lambda(2,1);
-    tmp_lambda << 1*err(0),
+    tmp_lambda << 10*err(0),
                   1*err(1);
 
   // compute control
@@ -204,7 +221,7 @@ void HillyNav::Controller(){
 
   // ang_vel.push_back(w(0,0));
 
-  std::cout << w << std::endl;
+  std::cout << "e_X:" << err(0) << " " << "e_theta:" << err(1) << " " << "w:" << w << std::endl;
 
   // // Steering Commands
   // VelocityMsg.angular.z = steering_dir * w(0,0);

@@ -29,18 +29,19 @@ public:
     cv::Point2f Q;
     Eigen::Vector3f F;
     Eigen::Vector3f F_des;
-    int controller_ID = 1;
+    int controller_ID = 0;
     double v = 0.05;
     geometry_msgs::Twist VelocityMsg;
 
-    cv::Mat pred_img;
+    cv::Mat pred_img, rgb_img;
     bool pred_img_received = false;
+    bool rgb_img_received = false;
 
     // ROS node handle.
     ros::NodeHandle nodeHandle_;
 
-    ros::Subscriber pred_img_sub;
-    ros::Publisher cmd_velocities;
+    ros::Subscriber pred_img_sub, rgb_img_sub;
+    ros::Publisher cmd_velocities, rgb_img_pub;
 
      // HillyNav(ros::NodeHandle& node_handler);
     HillyNav();
@@ -50,6 +51,7 @@ public:
     virtual ~HillyNav();
 
     // Functions
+    void predimagergbCallback(const sensor_msgs::ImageConstPtr& msg);
     void imagergbCallback(const sensor_msgs::ImageConstPtr& msg);
 
     void findCentroids(cv::Mat pred_img);
@@ -59,10 +61,16 @@ public:
     float compute_Theta(cv::Point2f& P, cv::Point2f& Q);
     float wrapToPi(float angle);
     void IBVS();
-   // std::stringstream ss;
-   //
-   // std::string name = "test_";
-   // std::string type = ".png";
-   // int ct = 0;
+
+    std::stringstream ss;
+
+    std::string name = "test_";
+    std::string type = ".png";
+    int ct = 0, counter = 0;
+
+    cv_bridge::CvImage img_bridge;
+    std_msgs::Header header; // empty header
+
+    sensor_msgs::Image img_msg; // >> message to be sent
    // std::vector<double> ang_vel;
 };
