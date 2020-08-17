@@ -19,10 +19,15 @@ class HillyNav{
 
 public:
 
-    double rho = 0.0;
-    double ty = 0.42;
-    double tz = 1.05;
+    double rho = 0.785398;
+    double ty = 0.735;
+    double tz = 1.205;
+    float w_max = 0.2;
     int hori_strips = 10;
+    double fx = 612.7745361328125;
+    double fy = 612.6051635742188;
+    double sensorwidth_mm = 90;
+    double fov = 69.4*M_PI/180; // Opening angle
 
     std::vector<cv::Point> line_fit;
     cv::Point2f P;
@@ -30,7 +35,7 @@ public:
     Eigen::Vector3f F;
     Eigen::Vector3f F_des;
     int controller_ID = 0;
-    double v = 0.05;
+    double v = 0.4;
     geometry_msgs::Twist VelocityMsg;
 
     cv::Mat pred_img, rgb_img;

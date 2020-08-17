@@ -11,7 +11,7 @@ HillyNav::HillyNav(){
   // Publishers
   rgb_img_pub = nodeHandle_.advertise<sensor_msgs::Image>("fitted_image", 10);  // control;
 
-  cmd_velocities = nodeHandle_.advertise<geometry_msgs::Twist>("nav_vel", 10);  // control;
+  cmd_velocities = nodeHandle_.advertise<geometry_msgs::Twist>("nav_vel1", 10);  // control;
 
   VelocityMsg.linear.x =0.0;
   VelocityMsg.angular.z =0.0;
@@ -55,8 +55,8 @@ float HillyNav::wrapToPi(float angle){
 //*************************************************************************************************
 cv::Point2f HillyNav::camera2image(cv::Point2f& xc, cv::Mat img){
   cv::Point2f xi;
-  xi.x =  xc.x - img.rows/2;
-  xi.y =  xc.y - img.cols/2;
+  xi.x =  xc.x - img.cols/2;
+  xi.y =  xc.y - img.rows/2;
   return xi;
 }
 
@@ -171,19 +171,39 @@ void HillyNav::Controller(){
   float Theta = F(2);
 
   Eigen::MatrixXf Ls(3,6);
-  Ls << -(sin(rho)+Y*cos(rho))/tz, 0, X*(sin(rho)+Y*cos(rho))/tz, X*Y, -1-pow(X,2),  Y,
-        0,   -(sin(rho)+Y*cos(rho))/tz, Y*(sin(rho)+Y*cos(rho))/tz, 1+pow(Y,2), -X*Y, -X,
+
+  double f_m = ((fx*sensorwidth_mm)/rgb_img.cols)/10000;
+
+  double rhou = (2*f_m/rgb_img.cols)*tan(fov/2); // alpha parameter in x
+  double rhov = (2*f_m/rgb_img.rows)*tan(fov/2); // alpha parameter in y
+  double Y_star = F_des(1)*rhov;
+  double z_c = tz/(sin(rho)+Y_star*cos(rho));
+  // double z_c = 1.05;
+
+  std::cout << Y_star << " " << Y_star*cos(rho) << " " << z_c << std::endl;
+
+  Ls << -fx/z_c, 0, X/z_c, (X*Y)/fy, -((pow(fx,2)-pow(X,2))/fx),  Y,
+        0,   -fy/z_c, Y/z_c, (pow(fy,2)-pow(Y,2))/fy, -(X*Y)/fx, -X,
         cos(rho)*pow(cos(Theta),2)/tz, cos(rho)*cos(Theta)*sin(Theta)/tz, -(cos(rho)*cos(Theta)*(Y*sin(Theta) + X*cos(Theta)))/tz, -(Y*sin(Theta) + X*cos(Theta))*cos(Theta), -(Y*sin(Theta) + X*cos(Theta))*sin(Theta), -1;
+
+
+  // Ls << -(sin(rho)+Y*cos(rho))/tz, 0, X*(sin(rho)+Y*cos(rho))/tz, X*Y, -1-pow(X,2),  Y,
+  //       0,   -(sin(rho)+Y*cos(rho))/tz, Y*(sin(rho)+Y*cos(rho))/tz, 1+pow(Y,2), -X*Y, -X,
+  //       cos(rho)*pow(cos(Theta),2)/tz, cos(rho)*cos(Theta)*sin(Theta)/tz, -(cos(rho)*cos(Theta)*(Y*sin(Theta) + X*cos(Theta)))/tz, -(Y*sin(Theta) + X*cos(Theta))*cos(Theta), -(Y*sin(Theta) + X*cos(Theta))*sin(Theta), -1;
+
+  // Eigen::MatrixXf S(2,6);
+  // S << 1, 0, 0, 0, 0, 0,
+  //      0, 0, 0, 0, 0, 1;
 
   // compute tranformation between robot to camera frame
   Eigen::MatrixXf c(2,6);
-  if( controller_ID == 1){
-    c << 0, -sin(rho), cos(rho), 0, 0, 0,
-        -ty, 0, 0, 0, -cos(rho ), -sin(rho);
-  }else{
-    c << 0, sin(rho), -cos(rho), 0, 0, 0,
-      -ty, 0, 0, 0, cos(rho), sin(rho);
-  }
+ //  if( controller_ID == 0){
+  c << 0, -sin(rho), cos(rho), 0, 0, 0,
+      -ty, 0, 0, 0, -cos(rho), -sin(rho);
+  // }else{
+  //   c << 0, sin(rho), -cos(rho), 0, 0, 0,
+  //     -ty, 0, 0, 0, cos(rho), sin(rho);
+  // }
 
   Eigen::MatrixXf cTR(6,2);
     cTR = c.transpose();
@@ -219,9 +239,11 @@ void HillyNav::Controller(){
 
   Eigen::MatrixXf w = -Jw_pinv*(tmp_lambda + Jv*v);
 
+  w(0,0) = copysign(std::min(std::abs(w(0,0)),(float)w_max), w(0,0));
+
   // ang_vel.push_back(w(0,0));
 
-  std::cout << "e_X:" << err(0) << " " << "e_theta:" << err(1) << " " << "w:" << w << std::endl;
+  std::cout << " " << "e_X:" << err(0) << " " << "e_theta:" << err(1) << " " << "w:" << w << std::endl;
 
   // // Steering Commands
   // VelocityMsg.angular.z = steering_dir * w(0,0);
