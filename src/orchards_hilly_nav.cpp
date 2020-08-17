@@ -8,6 +8,8 @@ HillyNav::HillyNav(){
 
   rgb_img_sub = nodeHandle_.subscribe("overlay_image", 1, &HillyNav::imagergbCallback, this);
 
+  imu_sub = nodeHandle_.subscribe("imu_data", 1000, &HillyNav::chatterCallback, this);
+
   // Publishers
   rgb_img_pub = nodeHandle_.advertise<sensor_msgs::Image>("fitted_image", 10);  // control;
 
@@ -39,6 +41,15 @@ void HillyNav::imagergbCallback(const sensor_msgs::ImageConstPtr& msg){ // RGB I
     catch(cv_bridge::Exception& e){
       ROS_ERROR("Could not convert from '%s' to 'bgr'.", msg->encoding.c_str());
     }
+}
+
+void HillyNav::chatterCallback(const sensor_msgs::Imu::ConstPtr& msg) {
+   ROS_INFO("Imu Seq: [%d]", msg->header.seq);
+   ROS_INFO("Imu Orientation x: [%f], y: [%f], z: [%f], w: [%f]", msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+
+   tf::Quaternion q(msg->orientation.x,msg->orientation.y,msg->orientation.z,msg->orientation.w);
+   tf::Matrix3x3(q).getRPY(roll, pitch, theta_r);
+
 }
 
 float HillyNav::wrapToPi(float angle){
@@ -163,6 +174,17 @@ void HillyNav::findCentroids(cv::Mat img){
 }
 
 
+Eigen::MatrixXf crossmat(Eigen::MatrixXf k){
+
+  Eigen::MatrixXf khat(3,3);
+
+  khat << 0, -k(3), k(2),
+          k(3), 0, -k(1),
+         -k(2), k(1), 0;
+
+  return khat;
+}
+
 //*************************************************************************************************
 void HillyNav::Controller(){
 
@@ -186,27 +208,64 @@ void HillyNav::Controller(){
         0,   -fy/z_c, Y/z_c, (pow(fy,2)-pow(Y,2))/fy, -(X*Y)/fx, -X,
         cos(rho)*pow(cos(Theta),2)/tz, cos(rho)*cos(Theta)*sin(Theta)/tz, -(cos(rho)*cos(Theta)*(Y*sin(Theta) + X*cos(Theta)))/tz, -(Y*sin(Theta) + X*cos(Theta))*cos(Theta), -(Y*sin(Theta) + X*cos(Theta))*sin(Theta), -1;
 
-
   // Ls << -(sin(rho)+Y*cos(rho))/tz, 0, X*(sin(rho)+Y*cos(rho))/tz, X*Y, -1-pow(X,2),  Y,
   //       0,   -(sin(rho)+Y*cos(rho))/tz, Y*(sin(rho)+Y*cos(rho))/tz, 1+pow(Y,2), -X*Y, -X,
   //       cos(rho)*pow(cos(Theta),2)/tz, cos(rho)*cos(Theta)*sin(Theta)/tz, -(cos(rho)*cos(Theta)*(Y*sin(Theta) + X*cos(Theta)))/tz, -(Y*sin(Theta) + X*cos(Theta))*cos(Theta), -(Y*sin(Theta) + X*cos(Theta))*sin(Theta), -1;
 
-  // Eigen::MatrixXf S(2,6);
-  // S << 1, 0, 0, 0, 0, 0,
-  //      0, 0, 0, 0, 0, 1;
-
   // compute tranformation between robot to camera frame
   Eigen::MatrixXf c(2,6);
- //  if( controller_ID == 0){
   c << 0, -sin(rho), cos(rho), 0, 0, 0,
       -ty, 0, 0, 0, -cos(rho), -sin(rho);
-  // }else{
-  //   c << 0, sin(rho), -cos(rho), 0, 0, 0,
-  //     -ty, 0, 0, 0, cos(rho), sin(rho);
-  // }
+
+  Eigen::MatrixXf Rx(3,3);
+
+  Rx << 1, 0, 0,
+        0, cos(rho), sin(rho),
+        0, -sin(rho), cos(rho); // Camera pitch
+
+// Transform robot frame to camera frame
+// [xb -> zc] % [yb -> -xc] % [zb -> -yc]
+  Eigen::MatrixXf Rcr(3,3);
+  Rcr << 0, -1, 0,
+         0, 0, -1,
+         1, 0, 0; // Camera pitch
+
+  Eigen::MatrixXf rot(3,3);
+
+  rot = Rx*Rcr; // Rotation of the matrix to transform the coordinates of the robot to the camera
+
+  // Translation between camera and robot in camera frame
+  Eigen::MatrixXf tlc(3,1);
+
+  tlc << 0,
+         tz,
+        -ty;
+
+  Eigen::MatrixXf tlc_fn = crossmat(tlc);
+
+  Eigen::MatrixXf H(6,6);
+
+  H << rot, tlc_fn,
+       Eigen::MatrixXf::Zero(3,3), rot; // Adjunct matrix
+
+  // Selection matrix to select only the desired velocites
+  Eigen::MatrixXf S(3,6);
+
+  S << 1, 0, 0, 0, 0, 0;
+       0, 1, 0, 0, 0, 0;
+       0, 0, 0, 0, 0, 1;
+
+  // Robot Model
+  Eigen::MatrixXf G(3,2);
+
+  G << cos(theta_r), 0,
+       sin(theta_r), 0,
+       0, 1;
 
   Eigen::MatrixXf cTR(6,2);
-    cTR = c.transpose();
+  // cTR = c.transpose();
+
+  cTR = H*S.transpose()*G; // With robot model
 
   Eigen::MatrixXf Tv(6,1);
     Tv = cTR.col(0);
@@ -241,14 +300,9 @@ void HillyNav::Controller(){
 
   w(0,0) = copysign(std::min(std::abs(w(0,0)),(float)w_max), w(0,0));
 
-  // ang_vel.push_back(w(0,0));
-
   std::cout << " " << "e_X:" << err(0) << " " << "e_theta:" << err(1) << " " << "w:" << w << std::endl;
 
-  // // Steering Commands
-  // VelocityMsg.angular.z = steering_dir * w(0,0);
-  // VelocityMsg.linear.x  = v;
-
+  // Steering Commands
   VelocityMsg.linear.x = v; // Sets at constant speed
   VelocityMsg.angular.z = w(0,0);
   cmd_velocities.publish(VelocityMsg);
@@ -260,14 +314,12 @@ void HillyNav::IBVS(){
 
     if(pred_img_received==true){
 
-      // cv::Mat pred_img = imread(label_file[i], 0);
-
       findCentroids(pred_img);
 
       Controller();
 
       pred_img_received = false;
-  //
+
     } // RGB image check
 
     ros::spinOnce();
@@ -278,42 +330,8 @@ void HillyNav::IBVS(){
 int main(int argc, char **argv) {
   ros::init(argc, argv, "orchards_hilly_nav");
 
-  // node handler
-  // ros::NodeHandle nodeHandle;
-  // HillyNav vs_NodeH(nodeHandle);
-
   HillyNav nav_obj;
   nav_obj.IBVS();
-
-  // // std::vector<cv::String> label_file;
-  // // cv::glob("/home/vignesh/NMBU_orchard_fields/results/*.png", label_file, false);
-  // //
-  // // size_t count = label_file.size(); //number of png files in images folder
-  // // // std::cout << count << std::endl;
-  // // for (size_t i=0; i<count; i++){
-  // //
-  // //   std::cout<<label_file[i]<<std::endl;
-  // //
-  // //   cv::Mat pred_img = imread(label_file[i], 0);
-  // //   nav_obj.findCentroids(pred_img);
-  // //   nav_obj.Controller();
-  // // }
-
-
-  // // Create an output filestream object
-  // std::ofstream myFile("ang_vel.csv");
-  //
-  // // Send the column name to the stream
-  // myFile << "Steering" << "\n";
-  //
-  // // Send data to the stream
-  // for(int i = 0; i < nav_obj.ang_vel.size(); ++i)
-  // {
-  //     myFile << nav_obj.ang_vel.at(i) << "\n";
-  // }
-  //
-  // // Close the file
-  // myFile.close();
 
   return 0;
 };

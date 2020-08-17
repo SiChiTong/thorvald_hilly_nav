@@ -8,11 +8,13 @@
 #include <opencv2/opencv.hpp>
 #include "opencv2/imgproc/imgproc.hpp"
 
-#include <geometry_msgs/Twist.h>
-
 #include <eigen3/Eigen/Dense>
 #include <eigen3/Eigen/QR>
 #include <Eigen/Geometry>
+
+#include <geometry_msgs/Twist.h>
+#include "sensor_msgs/Imu.h"
+#include <tf/transform_datatypes.h>
 
 class HillyNav{
 
@@ -36,6 +38,7 @@ public:
     Eigen::Vector3f F_des;
     int controller_ID = 0;
     double v = 0.4;
+    double roll, pitch, theta_r = 0;
     geometry_msgs::Twist VelocityMsg;
 
     cv::Mat pred_img, rgb_img;
@@ -45,7 +48,7 @@ public:
     // ROS node handle.
     ros::NodeHandle nodeHandle_;
 
-    ros::Subscriber pred_img_sub, rgb_img_sub;
+    ros::Subscriber pred_img_sub, rgb_img_sub, imu_sub;
     ros::Publisher cmd_velocities, rgb_img_pub;
 
      // HillyNav(ros::NodeHandle& node_handler);
@@ -58,6 +61,7 @@ public:
     // Functions
     void predimagergbCallback(const sensor_msgs::ImageConstPtr& msg);
     void imagergbCallback(const sensor_msgs::ImageConstPtr& msg);
+    void chatterCallback(const sensor_msgs::Imu::ConstPtr& msg);
 
     void findCentroids(cv::Mat pred_img);
     void Controller();
