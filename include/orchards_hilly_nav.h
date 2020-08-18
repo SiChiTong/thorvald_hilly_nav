@@ -40,10 +40,16 @@ public:
     double v = 0.4;
     double roll, pitch, theta_r = 0;
     geometry_msgs::Twist VelocityMsg;
+    double image_height, image_width;
+
+    // Camera Parameters
+    double z_c;
 
     cv::Mat pred_img, rgb_img;
     bool pred_img_received = false;
     bool rgb_img_received = false;
+    bool CamParameters = false;
+    bool robot_agnostic = true;
 
     // ROS node handle.
     ros::NodeHandle nodeHandle_;
@@ -51,11 +57,8 @@ public:
     ros::Subscriber pred_img_sub, rgb_img_sub, imu_sub;
     ros::Publisher cmd_velocities, rgb_img_pub;
 
-     // HillyNav(ros::NodeHandle& node_handler);
     HillyNav();
-    /**
-     *  Destroy the Agribot V S Node Handler object
-     */
+
     virtual ~HillyNav();
 
     // Functions
@@ -63,13 +66,16 @@ public:
     void imagergbCallback(const sensor_msgs::ImageConstPtr& msg);
     void chatterCallback(const sensor_msgs::Imu::ConstPtr& msg);
 
-    void findCentroids(cv::Mat pred_img);
+    void findCentroids();
     void Controller();
-    void bestApproximate(cv::Mat seg_img, std::vector<int> centroids_x,std::vector<int> centroids_y);
+    void bestApproximate(std::vector<int> centroids_x,std::vector<int> centroids_y);
     cv::Point2f camera2image(cv::Point2f& xc, cv::Mat img);
     float compute_Theta(cv::Point2f& P, cv::Point2f& Q);
     float wrapToPi(float angle);
     void IBVS();
+    void initCamParameters();
+    void Drawing();
+    Eigen::MatrixXf include_robot_model();
 
     std::stringstream ss;
 
