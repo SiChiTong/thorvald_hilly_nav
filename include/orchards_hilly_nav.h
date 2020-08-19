@@ -29,7 +29,7 @@ public:
     Eigen::Vector3f F;
     Eigen::Vector3f F_des;
     int controller_ID = 1;
-    double v = 0.05;
+    double v = 0.2;
     geometry_msgs::Twist VelocityMsg;
 
     cv::Mat pred_img;
