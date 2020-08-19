@@ -105,12 +105,23 @@ if __name__ == '__main__':
 
         while not rospy.is_shutdown():
 
+            # print('Output_folder',output_folder)
+            # im_files = glob.glob(os.path.join(input_folder,'*.jpg'))
+            # print(os.path.join(input_folder+'*.png'))
+            # for im in sorted(im_files):
+            #     if output_folder:
+            #         base = os.path.basename(im)
+            #         output_file = os.path.join(output_folder,os.path.splitext(base)[0])+"_pred.png"
+            #         print(output_file)
+            #     else:
+            #         output_file = None
             if nav_obj.img_received==True:
-                output_file = output_folder+"_pred.png"
-                seg_arr = nav_obj.predict_on_image(model,inp = nav_obj.image, visualize = True, output_file = output_file, display=False)
+                seg_arr = nav_obj.predict_on_image(model,inp = nav_obj.image, visualize = True, output_file = output_file, display=True)
+
                 print("--- %s seconds ---" % (time.time() - start_time))
                 nav_obj.img_received = False
 
+            rospy.spin()
     except KeyboardInterrupt:
        print("Shutting down")
        cv2.destroyAllWindows()

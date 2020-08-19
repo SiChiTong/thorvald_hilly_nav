@@ -81,15 +81,20 @@ include_directories(
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
 add_executable(orchards_hilly_nav src/orchards_hilly_nav.cpp)
+add_executable(orchards_hilly_nav_offline src/orchards_hilly_nav_offline.cpp)
 
 ## Specify libraries to link a library or executable target against
 target_link_libraries(orchards_hilly_nav
+  ${OpenCV_LIBS} ${catkin_LIBRARIES} Eigen3::Eigen
+)
+target_link_libraries(orchards_hilly_nav_offline
   ${OpenCV_LIBS} ${catkin_LIBRARIES} Eigen3::Eigen
 )
 
 ## Add cmake target dependencies of the executable
 ## same as for the library above
 add_dependencies(orchards_hilly_nav ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+add_dependencies(orchards_hilly_nav_offline ${${PROJECT_NAME}_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 
 ## Mark executable scripts (Python etc.) for installation
 ## in contrast to setup.py, you can choose the destination
