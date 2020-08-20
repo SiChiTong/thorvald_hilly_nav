@@ -3,6 +3,10 @@
 
 HillyNav::HillyNav(){
 
+  if(!readRUNParmas(nodeHandle_)){
+    ROS_ERROR("Params not found!!");
+  }
+
   // Subscribers
   pred_img_sub = nodeHandle_.subscribe("predicted_image", 1, &HillyNav::predimagergbCallback, this);
 
@@ -13,13 +17,41 @@ HillyNav::HillyNav(){
   // Publishers
   rgb_img_pub = nodeHandle_.advertise<sensor_msgs::Image>("fitted_image", 10);  // control;
 
-  cmd_velocities = nodeHandle_.advertise<geometry_msgs::Twist>("nav_vel", 10);  // control;
+  cmd_velocities = nodeHandle_.advertise<geometry_msgs::TwistStamped>("nav_vel", 10);  // control;
 
-  VelocityMsg.linear.x =0.0;
-  VelocityMsg.angular.z =0.0;
+  line_features = nodeHandle_.advertise<geometry_msgs::TwistStamped>("line_features", 10);  // control;
+
+  error_features = nodeHandle_.advertise<geometry_msgs::TwistStamped>("error_features", 10);  // control;
+
+  VelocityMsg.twist.linear.x =0.0;
+  VelocityMsg.twist.angular.z =0.0;
 }
 
 HillyNav::~HillyNav() {
+};
+
+bool HillyNav::readRUNParmas(ros::NodeHandle& nodeHandle_){
+
+  nodeHandle_.param("/orchards_hilly_nav/rho", rho, -0.785398/2);
+  nodeHandle_.param("/orchards_hilly_nav/w_max", w_max, 0.20);
+  nodeHandle_.param("/orchards_hilly_nav/hori_strips", hori_strips, 10);
+  nodeHandle_.param("/orchards_hilly_nav/sensorwidth_mm", sensorwidth_mm, 90.0);
+  nodeHandle_.param("/orchards_hilly_nav/fov", fov, 69.4*M_PI/180);
+
+  nodeHandle_.param("/orchards_hilly_nav/ty", ty, 1.075);
+  nodeHandle_.param("/orchards_hilly_nav/tz", tz, 1.275);
+
+  nodeHandle_.param("/orchards_hilly_nav/fx", fx, 612.7745361328125);
+  nodeHandle_.param("/orchards_hilly_nav/fy", fy, 612.6051635742188);
+
+  nodeHandle_.param("/orchards_hilly_nav/lambda_x", lambda_x, 0.825);
+  nodeHandle_.param("/orchards_hilly_nav/lambda_w", lambda_w, 1.1);
+
+  nodeHandle_.param("/orchards_hilly_nav/controller_ID", controller_ID, 0);
+  nodeHandle_.param("/orchards_hilly_nav/v", v, 0.15);
+
+  return true;
+
 }
 
 void HillyNav::predimagergbCallback(const sensor_msgs::ImageConstPtr& msg){ // RGB Image
@@ -259,8 +291,8 @@ void HillyNav::Controller(){
 
   // set weights
   Eigen::MatrixXf tmp_lambda(2,1);
-    tmp_lambda << 0.825*err(0),
-                  1.1*err(1);
+    tmp_lambda << lambda_x*err(0),
+                  lambda_w*err(1);
 
   // compute control
   Eigen::MatrixXf Jw_pinv(6,2);
@@ -273,10 +305,23 @@ void HillyNav::Controller(){
   std::cout << " " << "e_X:" << err(0) << " " << "e_theta:" << err(1) << " " << "w:" << w << std::endl;
 
   // Steering Commands
-  VelocityMsg.linear.x = v; // Sets at constant speed
-  VelocityMsg.angular.z = w(0,0);
+  VelocityMsg.header.stamp = ros::Time::now();
+  VelocityMsg.header.frame_id = "base_link";
+  VelocityMsg.twist.linear.x = v; // Sets at constant speed
+  VelocityMsg.twist.angular.z = w(0,0);
   cmd_velocities.publish(VelocityMsg);
 
+  FeatureMsg.header.stamp = ros::Time::now();
+  FeatureMsg.header.frame_id = "base_link";
+  FeatureMsg.twist.linear.x = err(0); // Sets at constant speed
+  FeatureMsg.twist.angular.z = err(1);
+  line_features.publish(FeatureMsg);
+
+  ErrorMsg.header.stamp = ros::Time::now();
+  ErrorMsg.header.frame_id = "base_link";
+  ErrorMsg.twist.linear.x = err(0); // Sets at constant speed
+  ErrorMsg.twist.angular.z = err(1);
+  error_features.publish(ErrorMsg);
 }
 
 void HillyNav::initCamParameters(){

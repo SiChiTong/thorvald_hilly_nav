@@ -12,54 +12,26 @@
 #include <eigen3/Eigen/QR>
 #include <Eigen/Geometry>
 
-#include <geometry_msgs/Twist.h>
+#include <geometry_msgs/TwistStamped.h>
 #include "sensor_msgs/Imu.h"
 #include <tf/transform_datatypes.h>
 
 class HillyNav{
 
-
 public:
-
-    double rho = -0.785398/2;
-    double ty = 1.075;
-    double tz = 1.275;
-    float w_max = 0.2;
-    int hori_strips = 10;
-    double fx = 612.7745361328125;
-    double fy = 612.6051635742188;
-    double sensorwidth_mm = 90;
-    double fov = 69.4*M_PI/180; // Opening angle
-
-    std::vector<cv::Point> line_fit;
-    cv::Point2f P;
-    cv::Point2f Q;
-    Eigen::Vector3f F;
-    Eigen::Vector3f F_des;
-    int controller_ID = 0;
-    double v = 0.15;
-    double roll, pitch, theta_r = 0;
-    geometry_msgs::Twist VelocityMsg;
-    double image_height, image_width;
-
-    // Camera Parameters
-    double z_c;
-
-    cv::Mat pred_img, rgb_img;
-    bool pred_img_received = false;
-    bool rgb_img_received = false;
-    bool CamParameters = false;
-    bool robot_agnostic = true;
 
     // ROS node handle.
     ros::NodeHandle nodeHandle_;
 
     ros::Subscriber pred_img_sub, rgb_img_sub, imu_sub;
     ros::Publisher cmd_velocities, rgb_img_pub;
+    ros::Publisher line_features, error_features;
 
     HillyNav();
 
     virtual ~HillyNav();
+
+    bool readRUNParmas(ros::NodeHandle& nodeHandle_);
 
     // Functions
     void predimagergbCallback(const sensor_msgs::ImageConstPtr& msg);
@@ -77,8 +49,36 @@ public:
     void Drawing();
     Eigen::MatrixXf include_robot_model();
 
-    std::stringstream ss;
+    // Camera Params
+    double rho, ty, tz, fx, fy; // Cam Tilt, Translation to robot, focal length
+    double w_max;
+    int hori_strips;
+    double sensorwidth_mm, fov; // Opening angle
+    double image_height, image_width;
+    double z_c; // Depth of the pixel
 
+    // Control Params
+    double lambda_x, lambda_w;
+    int controller_ID;
+    double v;
+
+    // Line Params
+    std::vector<cv::Point> line_fit;
+    cv::Point2f P, Q;
+    Eigen::Vector3f F, F_des;
+
+    // Robot Params
+    double roll, pitch, theta_r = 0;
+    geometry_msgs::TwistStamped VelocityMsg;
+    geometry_msgs::TwistStamped FeatureMsg, ErrorMsg;
+
+    cv::Mat pred_img, rgb_img;
+    bool pred_img_received = false;
+    bool rgb_img_received = false;
+    bool CamParameters = false;
+    bool robot_agnostic = true;
+
+    std::stringstream ss;
     std::string name = "test_";
     std::string type = ".png";
     int ct = 0, counter = 0;

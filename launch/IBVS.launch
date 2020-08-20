@@ -11,8 +11,10 @@
 <!--include file="$(find auto_nav)/launch/realsense.launch"/-->
 
 <!-- Deep learning .-->
-<node pkg="thorvald_hilly_nav" name="online_da_predict" type="online_da_predict.py" output="screen"/>
+<!-- <node pkg="thorvald_hilly_nav" name="online_da_predict" type="online_da_predict.py" output="screen">
+</node> -->
 
-<!-- <node pkg="thorvald_hilly_nav" name="orchards_hilly_nav" type="orchards_hilly_nav" output="screen"/>  -->
-
+<node pkg="thorvald_hilly_nav" name="orchards_hilly_nav" type="orchards_hilly_nav" output="screen">
+  <rosparam command="load" file="$(find thorvald_hilly_nav)/params/thorvald_hilly_nav_run.yaml"/>
+</node>
 </launch>
