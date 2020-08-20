@@ -8,11 +8,11 @@
 <param  name="output_folder" type="str" value="$(env HOME)/NMBU_orchard_fields/results/" />
 
 <!-- Launch the realsense .-->
-<include file="$(find auto_nav)/launch/realsense.launch"/>
+<!--include file="$(find auto_nav)/launch/realsense.launch"/-->
 
 <!-- Deep learning .-->
 <node pkg="thorvald_hilly_nav" name="online_da_predict" type="online_da_predict.py" output="screen"/>
 
-<!-- <node pkg="thorvald_hilly_nav" name="orchards_hilly_nav" type="orchards_hilly_nav" output="screen"/> -->
+<!-- <node pkg="thorvald_hilly_nav" name="orchards_hilly_nav" type="orchards_hilly_nav" output="screen"/>  -->
 
 </launch>

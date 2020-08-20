@@ -44,7 +44,7 @@ class hilly_nav():
        except CvBridgeError as e:
          print(e)
 
-    def visualize_segmentation(self, seg_arr, display = False, output_file = None):
+    def visualize_segmentation(self, seg_arr, display = False):
 
 
         seg_img = predict.segmented_image_from_prediction(seg_arr, self.n_classes, input_shape = self.image.shape)
@@ -67,13 +67,13 @@ class hilly_nav():
 
         # return upscaled_img
 
-    def predict_on_image(self, model, inp, visualize = None, output_file = None, display=False):
+    def predict_on_image(self, model, inp, visualize = None, display=False):
 
         # Run prediction (and optional, visualization)
         seg_arr, self.image = predict.predict_fast(model, inp)
 
         if visualize:
-            self.visualize_segmentation(seg_arr, display=display, output_file=output_file)
+            self.visualize_segmentation(seg_arr, display=display)
 
             self.seg_img_pub.publish(self.bridge.cv2_to_imgmsg(self.pred_img, "mono8"))
             self.overlay_img_pub.publish(self.bridge.cv2_to_imgmsg(self.overlay_img, "rgb8"))
@@ -116,12 +116,11 @@ if __name__ == '__main__':
             #     else:
             #         output_file = None
             if nav_obj.img_received==True:
-                seg_arr = nav_obj.predict_on_image(model,inp = nav_obj.image, visualize = True, output_file = output_file, display=True)
+                seg_arr = nav_obj.predict_on_image(model,inp = nav_obj.image, visualize = True, display=True)
 
                 print("--- %s seconds ---" % (time.time() - start_time))
                 nav_obj.img_received = False
 
-            rospy.spin()
     except KeyboardInterrupt:
        print("Shutting down")
        cv2.destroyAllWindows()

@@ -13,7 +13,7 @@ HillyNav::HillyNav(){
   // Publishers
   rgb_img_pub = nodeHandle_.advertise<sensor_msgs::Image>("fitted_image", 10);  // control;
 
-  cmd_velocities = nodeHandle_.advertise<geometry_msgs::Twist>("nav_vel1", 10);  // control;
+  cmd_velocities = nodeHandle_.advertise<geometry_msgs::Twist>("nav_vel", 10);  // control;
 
   VelocityMsg.linear.x =0.0;
   VelocityMsg.angular.z =0.0;
@@ -234,7 +234,6 @@ void HillyNav::Controller(){
     cTR = include_robot_model();
   }
 
-  // std::cout << cTR << std::endl;
 
   Eigen::MatrixXf Tv(6,1);
     Tv = cTR.col(0);
@@ -253,13 +252,15 @@ void HillyNav::Controller(){
           Ls.row(2);
     Jw = Jw*Tw;
 
+    // std::cout << Jv << " " << Jw << std::endl;
+
   // compute control law
   Eigen::Vector2f err((F[controller_ID] - F_des[controller_ID]), wrapToPi(F[2] - F_des[2]));
 
   // set weights
   Eigen::MatrixXf tmp_lambda(2,1);
-    tmp_lambda << 10*err(0),
-                  1*err(1);
+    tmp_lambda << 0.825*err(0),
+                  1.1*err(1);
 
   // compute control
   Eigen::MatrixXf Jw_pinv(6,2);

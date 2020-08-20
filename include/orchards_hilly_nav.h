@@ -21,9 +21,9 @@ class HillyNav{
 
 public:
 
-    double rho = 0.785398;
-    double ty = 0.735;
-    double tz = 1.205;
+    double rho = -0.785398/2;
+    double ty = 1.075;
+    double tz = 1.275;
     float w_max = 0.2;
     int hori_strips = 10;
     double fx = 612.7745361328125;
@@ -36,9 +36,8 @@ public:
     cv::Point2f Q;
     Eigen::Vector3f F;
     Eigen::Vector3f F_des;
-    int controller_ID = 1;
     int controller_ID = 0;
-    double v = 0.2;
+    double v = 0.15;
     double roll, pitch, theta_r = 0;
     geometry_msgs::Twist VelocityMsg;
     double image_height, image_width;
