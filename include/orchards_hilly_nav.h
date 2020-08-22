@@ -69,7 +69,7 @@ public:
 
     // Robot Params
     double roll, pitch, theta_r = 0;
-    geometry_msgs::TwistStamped VelocityMsg;
+    geometry_msgs::Twist VelocityMsg;
     geometry_msgs::TwistStamped FeatureMsg, ErrorMsg;
 
     cv::Mat pred_img, rgb_img;

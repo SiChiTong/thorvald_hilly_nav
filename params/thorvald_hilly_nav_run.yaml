@@ -12,8 +12,8 @@ fx: 612.7745361328125
 fy: 612.6051635742188
 
 # ----------------Controller Params------------------
-lambda_x: 0.825 #Gain v_x
+lambda_x: 1.0 #Gain v_x
 lambda_w: 1.1 #Gain w_x
 
 controller_ID: 0
-v: 0.15
+v: 0.3

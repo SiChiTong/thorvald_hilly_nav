@@ -17,14 +17,14 @@ HillyNav::HillyNav(){
   // Publishers
   rgb_img_pub = nodeHandle_.advertise<sensor_msgs::Image>("fitted_image", 10);  // control;
 
-  cmd_velocities = nodeHandle_.advertise<geometry_msgs::TwistStamped>("nav_vel", 10);  // control;
+  cmd_velocities = nodeHandle_.advertise<geometry_msgs::Twist>("nav_vel", 10);  // control;
 
   line_features = nodeHandle_.advertise<geometry_msgs::TwistStamped>("line_features", 10);  // control;
 
   error_features = nodeHandle_.advertise<geometry_msgs::TwistStamped>("error_features", 10);  // control;
 
-  VelocityMsg.twist.linear.x =0.0;
-  VelocityMsg.twist.angular.z =0.0;
+  VelocityMsg.linear.x =0.0;
+  VelocityMsg.angular.z =0.0;
 }
 
 HillyNav::~HillyNav() {
@@ -305,10 +305,10 @@ void HillyNav::Controller(){
   std::cout << " " << "e_X:" << err(0) << " " << "e_theta:" << err(1) << " " << "w:" << w << std::endl;
 
   // Steering Commands
-  VelocityMsg.header.stamp = ros::Time::now();
-  VelocityMsg.header.frame_id = "base_link";
-  VelocityMsg.twist.linear.x = v; // Sets at constant speed
-  VelocityMsg.twist.angular.z = w(0,0);
+  // VelocityMsg.header.stamp = ros::Time::now();
+  // VelocityMsg.header.frame_id = "base_link";
+  VelocityMsg.linear.x = v; // Sets at constant speed
+  VelocityMsg.angular.z = -w(0,0);
   cmd_velocities.publish(VelocityMsg);
 
   FeatureMsg.header.stamp = ros::Time::now();
